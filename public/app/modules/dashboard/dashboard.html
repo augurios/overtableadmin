@@ -1,0 +1,35 @@
+ <section id="main" translate-namespace="DASHBOARD">
+           <div ng-include="'public/template/partials/sidebar.html'" ng-cloak></div>
+
+            <section id="content">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 translate>.HEADTAGLINE</h2>
+
+                            
+                        </div>
+                        
+                        <div class="card-body card-padding">
+                            <form role="form" class="ng-pristine ng-valid">
+                                <div class="form-group fg-line">
+                                    <input type="text" class="form-control input-sm" id="exampleInputEmail1" ng-model="vm.user.tokenvar">
+                                </div>
+                                
+                                
+
+                                <button ng-click="vm.generateotoken()" type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect" translate>.GENERATENEWTOKEN</button>
+                                <button ng-if="vm.user.tokenvar" ngclipboard data-clipboard-text="{{vm.user.tokenvar}}" type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect"><span translate>.COPYCLICK</span></button>
+                                <button ng-if="vm.btn.savenewtoken" ng-click="vm.savenewtoken()" type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect" translate>.SAVENEWTOKEN</button>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    </div>
+                    </section>
+
+                    
+            <footer  id="footer" ng-include="'public/template/partials/footer.html'" ng-cloak></footer>
+
+        </section>

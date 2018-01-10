@@ -1,0 +1,102 @@
+<section id="main" translate-namespace="EMPLOYEE">
+
+    <div ng-include="'public/template/partials/sidebar.html'" ng-cloak></div>
+    <section id="content" ng-if="vm.users">
+        <div class="container">
+			<div class="card">
+                <div class="card-header">
+                    <h2 translate> .HEAD</h2>
+                    <button ng-click="vm.modal()" class="btn palette-Light-Green bg btn-float waves-effect waves-circle waves-float"><i class="zmdi zmdi-plus"></i></button>
+
+                </div>
+
+                <div ng-if="vm.users.length > 0" id="data-table-command-header" class="bootgrid-header container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 actionBar">
+                            <div class="search form-group">
+                                <div class="input-group"><span class="zmdi icon input-group-addon glyphicon-search"></span>
+                                    <input type="text" ng-model="search" class="search-field form-control" placeholder="{{'SEARCH' | translate}}">
+                                </div>
+                            </div>
+                            <div class="actions btn-group">
+                                <div class="dropdown btn-group">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="dropdown-text">{{pageSize}}</span> <span class="caret"></span></button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li  ng-class="(pageSize == 10 ? 'active' : '')"><a ng-click="pageSize = 10" class="dropdown-item dropdown-item-button">10</a></li>
+                                        <li ng-class="(pageSize == 25 ? 'active' : '')"><a ng-click="pageSize = 25" class="dropdown-item dropdown-item-button">25</a></li>
+                                        <li  ng-class="(pageSize == 50 ? 'active' : '')"><a ng-click="pageSize = 50" class="dropdown-item dropdown-item-button">50</a></li>
+                                        <li ng-class="(pageSize == totalsize ? 'active' : '')"><a ng-click="pageSize = totalsize" class="dropdown-item dropdown-item-button">{{'ALL' | translate}}</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown btn-group">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="dropdown-text"><span class="zmdi icon zmdi-view-module"></span></span> <span class="caret"></span></button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li ng-repeat="head in headers">
+                                            <div class="checkbox">
+                                                <label class="dropdown-item">
+                                                    <input name="id" type="checkbox" ng-model="head.show" ng-click="!head.show" class="dropdown-item-checkbox" checked="checked"> {{head.heading}}<i class="input-helper"></i></label>
+                                            </div>
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  ng-if="vm.users.length > 0" class="table-responsive">
+                    <table id="data-table-selection" class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th>#</th>
+                                <th ng-repeat="head in headers" ng-click="sort('head')" ng-if="head.show">{{head.heading}}
+                                </th>
+                                <th data-column-id="commands" class="text-left" style="">
+                                    <a href="javascript:void(0);" class="column-header-anchor ">
+                                        <span class="text">{{'ACTION' | translate}}</span><span class="zmdi icon "></span></a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                            <tr dir-paginate="user in vm.users|orderBy:sortKey:reverse|filter:search|itemsPerPage:pageSize" current-page="currentPage">
+                                <td>{{$index+1}}</td>
+                                <td ng-if="headers[0].show">{{user.firstname}}</td>
+                                <td ng-if="headers[1].show">{{user.lastname}}</td>
+                                <td ng-if="headers[4].show">{{user.email}}</td>
+                                <td ng-if="headers[2].show">{{user.phone}}</td>
+                                <td ng-if="headers[3].show">{{user.role}}</td>
+                                <td ng-if="headers[5].show">{{user.restaurant.firstname}} {{user.restaurant.lastname}}</td>
+                                
+                                <td class="text-left" style="">
+                                    <button type="button" data-id="{{user._id}}" ng-click="vm.modal(user)" class="btn btn-icon command-edit waves-effect waves-circle" data-row-id="10253"><span class="zmdi zmdi-edit"></span></button>
+                                    <button type="button" ng-click="vm.deleteAction(user._id)" class="btn btn-icon command-delete waves-effect waves-circle" data-row-id="10253"><span class="zmdi zmdi-delete"></span></button>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <div id="data-table-command-footer" class="bootgrid-footer container-fluid">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                     <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)">
+                    </dir-pagination-controls>
+                                </div>
+                                <div class="col-sm-6 infoBar">
+                                    <div class="infos">{{'SHOWING' | translate}}  to {{pageSize}} of {{totalsize}} {{'ENTRIES' | translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                </div>
+
+                <div ng-if="vm.users.length <= 0">
+                    <div ng-include="'public/template/partials/nothingfound.html'" ng-cloak></div>
+                </div>
+             </div>
+        </div>
+    </section>
+    <footer id="footer" ng-include="'public/template/partials/footer.html'" ng-cloak></footer>
+</section>

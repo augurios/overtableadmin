@@ -1,0 +1,142 @@
+{
+  "LANG": "English",
+  "BUTTON_LANG_SP": "Español",
+  "BUTTON_LANG_EN": "English",
+  "EMAIL" : "Email",
+  "PASSWORD" : "Password",
+  "TOKEN" : "Token",
+  "SIGNIN" : "Log In",
+  "LOGGINGIN" : "Logging In...",
+  "CREATEACC" : "Create an account",
+  "FORGOTPASSWORD" : "Forgot password?",
+  "FRGOT_TAGLINE" : "Enter your email",
+  "RESET_PASSWORD" : "Reset Password",
+  "LOGOUT" : "Log Out",
+  "ALREADY_HAV_ACCOUNT": "Already have an account?",
+  "ACCEPTAGREEMENT" : "Accept the license agreement",
+  "MORE" : "MORE",
+  "NAME" : "Name",
+  "FAILED" : "Failed" ,
+  "SUCCESS" : "Success",
+  "SETTINGS" : "Settings",
+  "SEARCH" : "Search",
+  "ACTION" : "Action",
+  "SHOWING" : "Showing",
+  "ENTRIES" : "Entries",
+  "ALL" : "Todas",
+  "RESTAURANT" : "Restaurant",
+  "HEADERSEARCH" : "Search for people, files & reports",
+  "FOOTERTEXT" : "Copyright &copy; 2016 MEAN APP",
+  "FIRST_NAME" : "First Name",
+  "LAST_NAME" : "Last Name",
+  "PHONE_NUMBER" : "Contact Number",
+  "SELECT" : "Select",
+  "CASHIER" : "Cashier",
+  "WAITRESS" : "Waitress",
+  "MANAGEMENT" : "Management",
+  "KITCHEN" : "Kitchen",
+  "POSITION" : "Position",
+  "SELECT_RESTAURANT" : "Select Restaurant",
+  "PIN_NUMBER" : "Pin Number",
+  "DATE_OF_BIRTH" : "Date of Birth",
+  "CREATE_USER" : "Create User",
+  "UPDATE_USER" : "Actualizar Usuario",
+  "CREATE_EMPLOYEE" : "Create Employee",
+  "UPDATE_EMPLOYEE" : "Edit Employee",
+  "CLOSE" : "Close",
+  "ADMIN" : "Admin",
+  "NOTHINGFOUNDTEMPLATEPARTHEAD" : "No records found",
+  "NOTHINGFOUNDTEMPLATEPARTTAGLINE" : "You may<cite title='Add Record'> add one</cite>",
+  "HEADER" : {
+    "LOGO" : "LOGO",
+    "VIEWPROFILE" : "View Profile",
+    "PRIVACYSETTINGS" : "Privacy Settings"
+  },
+  "MENU": {
+    "HOME" : "Home",
+    "USERS" : "Users",
+    "EMPLOYEE" : "Employee"
+  },
+  "PAGE" : {
+    "DASHBOARD"  : "Dashboard",
+    "LOGIN" : "Login",
+    "RESETPWD" : "Reset Password",
+    "MANGEMPLOYE" : "Manage Employees",
+    "MANGEUSER" : "Manage User",
+    "NOTFOUND" : "Page Not Found"
+  },
+  "LOGIN" : {
+  	"HEADING" : "Hi there! Please Sign in",
+  	"TAGLINE" : "Authenticate your restaurant"
+  },
+  "RESETPASSWORD" : {
+    "HEAD" : "Hi there! Please Reset Your Password",
+    "NPWD" : "New Password",
+    "CPWD" : "Confirm Password"
+  },
+  "DASHBOARD" : {
+      "HEADTAGLINE" : "Unique store token <small>Use this token to authenticate the server app</small>",
+      "GENERATENEWTOKEN" : "Generate New Token",
+      "COPYCLICK" : "Click to Copy",
+      "SAVENEWTOKEN" : "Save New Token"
+  },
+  "USER" :{
+    "HEAD" : "Manage User"
+  },
+  "EMPLOYEE" : {
+  	"HEAD" : "Manage Employee"
+  },
+  "ADDUSER" : {
+    "HEAD" : "Add User"
+  },
+  "EDITUSER" : {
+    "HEAD" : "Edit User"
+  },
+  "ADDEMPLOYEE" : {
+    "HEAD" : "Add Employee"
+  },
+  "EDITEMPLOYEE" : {
+    "HEAD" : "Editar Employee"
+  },
+  "TOP_MENU" : {
+  	"HOME" :"HOME",
+  	"TERMINATE_SESSION":"Terminate Session"
+ },
+  "MESSAGES" : {
+      "DONE" : "Done. Task Finished!",
+      "ACTIONNOTCOMPLETED" : "Task Could not be Finished. Try again after sometime!",
+      "NOSUFFICIENTDATA" : "No enough data provided.",
+      "NOUSER" : "No User Found",
+      "LOGINSUCCESS" : "You have successfully logged.",
+      "INVALIDCREDENTIALS": "You provided invalid credentials",
+      "LOGGEDOUT": "You have successfully logged out",
+      "USERCREATIONSUCCESS": "User created successfully",
+      "USERCREATIONFAILED": "Error adding user",
+      "USERUPDATIONSUCCESS": "User Updated Successfully",
+      "UNAUTHORIZED": "You are not authorized to do this operations",
+      "PERMISSIONDENIED": "You are not permitted.",
+      "FORBIDDENACCESS": "Access Denied",
+      "USERMAILEXISTS": "The email already exists",
+      "USERALREADYEXISTS": "An user already exists with this data",
+      "USERDELETE": "User deleted successfully",
+      "INVALIDMAIL": "Invalid email",
+      "INVALIDPHONE": "Invalid phone number",
+      "TOKENUPDATED": "Your token has been updated",
+      "NOTREQUESTEDCHANGE": "It seems you haven't  requested a password change",
+      "LINKEXPIRED": "This link has expired. Try requesting password change once more",
+      "PASSWORDCHANGED": "You have changed your password",
+      "CANNOTCHANGEPASSWORD": "You can't change your password. You have already changed your password",
+      "FORGOTMAILSENT": "Email has been sent the mail. Please reset using the link on mail",
+      "FORGOTMAILSENTERR": "Some error went in between",
+      "PASSWORDNOTMATCH": "Password Doesn't Matches",
+      "ERROROCCURED": "Error Occurred",
+      "ALLFIELDSRQ": "All Fields are required",
+      "SWALTITLE": {
+        "DELETE" : {
+          "TITLE" : "Are you sure?",
+          "TEXT" : "You will not be able to get this record?",
+          "CONFIRMTEXT" : "Yes, delete it!"
+        }
+      }
+  }
+}

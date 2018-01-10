@@ -1,0 +1,128 @@
+
+
+
+        <div class="login" data-lbg="teal"  ng-controller="login as vm" translate-namespace="LOGIN">
+            <!-- Login -->
+            <div class="l-block toggled" id="l-login">
+                <div class="lb-header palette-Teal bg">
+                    <i class="zmdi zmdi-account-circle"></i>
+                   <span translate> .HEADING </span>
+                </div>
+                <form role="form" name="authenticationform" ng-submit="vm.authenticate()" >
+                <div class="lb-body">
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            <input focusline type="text" class="input-sm form-control fg-input" ng-model="vm.credential.email" ng-required="true">
+                            <label class="fg-label">{{'EMAIL' | translate}}</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            <input type="password" class="input-sm form-control fg-input" ng-model="vm.credential.pwd" ng-required="true">
+                            <label class="fg-label">{{'PASSWORD' | translate}}</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" ng-disabled="!authenticationform.$valid || vm.disabled" class="btn palette-Teal bg" >{{vm.buttontext}}</button>
+
+                    <div class="m-t-20" >
+                        <a loginAccountControl data-block="#l-register" data-bg="blue" class="palette-Teal text d-block m-b-5" href=""> {{'CREATEACC' | translate}} </a>
+                        <a loginAccountControl data-block="#l-forget-password" data-bg="purple" href="" class="palette-Teal text"> {{'FORGOTPASSWORD' | translate}} </a>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+            <!-- Register -->
+            <div class="l-block" id="l-register">
+                <div class="lb-header palette-Blue bg">
+                    <i class="zmdi zmdi-account-circle"></i>
+                    {{'CREATEACC' | translate}} 
+                </div>
+
+                <div class="lb-body">
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            <input type="text" class="input-sm form-control fg-input">
+                            <label class="fg-label">{{'NAME' | translate}} </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            <input type="text" class="input-sm form-control fg-input">
+                            <label class="fg-label">{{'EMAIL' | translate}}</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            <input type="password" class="input-sm form-control fg-input">
+                            <label class="fg-label">{{'PASSWORD' | translate}}</label>
+                        </div>
+                    </div>
+
+                    <div class="checkbox m-b-30">
+                        <label>
+                            <input type="checkbox" value="">
+                            <i class="input-helper"></i>
+                             {{'ACCEPTAGREEMENT' | translate}}
+                        </label>
+                    </div>
+
+                    <button class="btn palette-Blue bg"> {{'CREATEACC' | translate}}</button>
+
+                    <div class="m-t-30">
+                        <a data-block="#l-login" data-bg="teal" class="palette-Blue text d-block m-b-5" href=""> {{'ALREADY_HAV_ACCOUNT' | translate}}</a>
+                        <a data-block="#l-forget-password" data-bg="purple" href="" class="palette-Blue text">{{'FORGOTPASSWORD' | translate}} </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forgot Password -->
+            <div class="l-block" id="l-forget-password">
+                <div class="lb-header palette-Purple bg">
+                    <i class="zmdi zmdi-account-circle"></i>
+                    {{'FORGOTPASSWORD' | translate}}
+                </div>
+
+                <div class="lb-body">
+                <form name="forgotpassword" ng-submit="vm.forgot()">
+                    <p class="m-b-30">{{'FRGOT_TAGLINE' | translate}}</p>
+
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            <input type="text" class="input-sm form-control fg-input" ng-model="vm.user.forgotpassword" required ng-required="true">
+                            <label class="fg-label">{{'EMAIL' | translate}}</label>
+                        </div>
+                    </div>
+
+                    <button class="btn palette-Purple bg" ng-disabled="!forgotpassword.$valid" type="submit">{{'RESET_PASSWORD' | translate}}</button>
+
+                    <div class="m-t-30">
+                        <a data-block="#l-login" data-bg="teal" class="palette-Purple text d-block m-b-5" href="">{{'ALREADY_HAV_ACCOUNT' | translate}}</a>
+                        <a data-block="#l-register" data-bg="blue" href="" class="palette-Purple text">{{'CREATEACC' | translate}} </a>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+          <script type="text/javascript">
+              $('body').on('click', '.l-block [data-block]', function(e){
+                e.preventDefault();
+
+                var z = $(this).data('block');
+                var t = $(this).closest('.l-block');
+                var c = $(this).data('bg');
+
+                t.removeClass('toggled');
+
+                setTimeout(function(){
+                    $('.login').attr('data-lbg', c);
+                    $(z).addClass('toggled');
+                });
+
+            })
+          </script>

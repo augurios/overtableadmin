@@ -1,0 +1,29 @@
+{
+  "LANG": "Spanish",
+  "BUTTON_LANG_SP": "Spanish",
+  "BUTTON_LANG_EN": "English",
+  "EMAIL" : "Correo Electrónico",
+  "PASSWORD" : "Contraseña",
+  "TOKEN" : "Simbólico",
+  "SIGNIN" : "Iniciar sesión",
+  "LOGOUT" : "Cerrar sesión",
+  "MORE" : "Más",
+  "LOGIN" : {
+  	"HEADING" : "Iniciar sesión",
+  	"TAGLINE" : "Autenticar su restaurante"
+  },
+  "DASHBOARD" : {
+
+  },
+  "EMPLOYEE" : {
+  	"HEADING" :"Bienvenido "
+  },
+   "EMPLOYEEPROFILE" : {
+    "HEADING" :"Perfil del Empleado"
+  },
+  "TOP_MENU" : {
+  	"HOME" :"Casa",
+    "PROFILE" :"PERFIL",
+  	"TERMINATE_SESSION":"TERMINAR SESIÓN"
+ }
+}

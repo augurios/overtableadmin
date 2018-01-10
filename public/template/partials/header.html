@@ -1,0 +1,112 @@
+ <header id="header" class="media" ng-if="nopanel" translate-namespace="HEADER" >
+            <div class="pull-left h-logo">
+                <a ui-sref="/" class="hidden-xs" translate>
+                    .LOGO   
+                    <small></small>
+                </a>
+                
+                <div class="menu-collapse" data-ma-action="sidebar-open" data-ma-target="main-menu">
+                    <div class="mc-wrap">
+                        <div class="mcw-line top palette-White bg"></div>
+                        <div class="mcw-line center palette-White bg"></div>
+                        <div class="mcw-line bottom palette-White bg"></div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="pull-right h-menu languagebar">
+                <li class="hm-search-trigger">
+                    <a href="" data-ma-action="search-open">
+                        <i class="hm-icon zmdi zmdi-search"></i>
+                    </a>
+                </li>
+                
+                <!-- <li class="dropdown hidden-xs hidden-sm h-apps">
+                    <a data-toggle="dropdown" href="">
+                        <i class="hm-icon zmdi zmdi-apps"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a href="">
+                                <i class="palette-Red-400 bg zmdi zmdi-calendar"></i>
+                                <small>Calendar</small>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="">
+                                <i class="palette-Green-400 bg zmdi zmdi-file-text"></i>
+                                <small>Files</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="palette-Light-Blue bg zmdi zmdi-email"></i>
+                                <small>Mail</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="palette-Orange-400 bg zmdi zmdi-trending-up"></i>
+                                <small>Analytics</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="palette-Purple-300 bg zmdi zmdi-view-headline"></i>
+                                <small>News</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="palette-Blue-Grey bg zmdi zmdi-image"></i>
+                                <small>Gallery</small>
+                            </a>
+                        </li>
+                    </ul>
+                </li> -->
+
+                <li class="dropdown hidden-xs">
+                    <a data-toggle="dropdown" href=""><i class="hm-icon zmdi zmdi-translate"></i></a>
+                    <ul class="dropdown-menu dm-icon pull-right">
+                        <li >
+                            <a href="" ng-class="lang == 'sp' ? 'active' : ''" ng-click="changeLanguage('sp')" translate="BUTTON_LANG_SP" ><i class="zmdi zmdi-collection-item-1 zmdi-hc-fw"></i>  </a>
+                        </li>
+                        <li>
+                            <a href="" ng-class="lang == 'en' ? 'active' : ''" ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN"><i class="zmdi zmdi-collection-item-2 zmdi-hc-fw"></i>  </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="hm-alerts" data-user-alert="sua-messages" data-ma-action="sidebar-open" data-ma-target="user-alerts">
+                    <a href=""><i class="hm-icon zmdi zmdi-notifications"></i></a>
+                </li>
+                <li class="dropdown hm-profile">
+                    <a data-toggle="dropdown" href="">
+                        <img src="./public/assets/img/profile-pics/1.jpg" alt="">
+                    </a>
+                    
+                    <ul class="dropdown-menu pull-right dm-icon">
+                        <li>
+                            <a href="profile-about.html"><i class="zmdi zmdi-account"></i> <span translate> .VIEWPROFILE</span></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-input-antenna"></i> <span translate> .PRIVACYSETTINGS</span></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-settings"></i> {{'SETTINGS' | translate}}</a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click="core.logout()"><i class="zmdi zmdi-time-restore"></i>{{'LOGOUT' | translate}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <div class="media-body h-search">
+                <form class="p-relative">
+                    <input type="text" class="hs-input" placeholder="{{'HEADERSEARCH' | translate}}">
+                    <i class="zmdi zmdi-search hs-reset" data-ma-action="search-clear"></i>
+                </form>
+            </div>
+            
+        </header>

@@ -1,0 +1,29 @@
+{
+  "LANG": "English",
+  "BUTTON_LANG_SP": "Spanish",
+  "BUTTON_LANG_EN": "English",
+  "EMAIL" : "Email",
+  "PASSWORD" : "Password",
+  "TOKEN" : "Token",
+  "SIGNIN" : "Log In",
+  "LOGOUT" : "Log Out",
+  "MORE" : "MORE",
+  "LOGIN" : {
+  	"HEADING" : "Log In",
+  	"TAGLINE" : "Authenticate your restaurant"
+  },
+  "DASHBOARD" : {
+
+  },
+  "EMPLOYEE" : {
+    "HEADING" :"Welcome employe"
+  },
+  "EMPLOYEEPROFILE" : {
+  	"HEADING" :"Employe Profile"
+  },
+"TOP_MENU" : {
+    "HOME" :"HOME",
+  	"PROFILE" :"PROFILE",
+  	"TERMINATE_SESSION":"TERMINATE SESSION"
+ }
+}

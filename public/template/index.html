@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html ng-app="serverMeanapp">
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <script>//document.write('<base href="' + document.location + '" />');
+         var base_url ='/';
+         </script>
+         <base href="/">
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title update-title></title>
+
+        <!-- Vendor CSS -->
+        <link href="./vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+        <link href="./vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="./vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="./vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
+        <link href="./vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+        <link href="./vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+
+        <link href="./vendors/bower_components/jquery.bootgrid/dist/jquery.bootgrid.min.css" rel="stylesheet">
+        <link href="/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
+        <link href="/vendors/bower_components/nouislider/distribute/jquery.nouislider.min.css" rel="stylesheet">
+        <link href="/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link href="/vendors/farbtastic/farbtastic.css" rel="stylesheet">
+        <link href="/vendors/bower_components/chosen/chosen.min.css" rel="stylesheet">
+        <link href="/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <!-- CSS -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.ui.rotatable/1.1/jquery.ui.rotatable.css">
+        <link href="./public/assets/css/app.min.1.css" rel="stylesheet">
+        <link href="./public/assets/css/app.min.2.css" rel="stylesheet"> 
+        <link href="./public/assets/css/toaster.min.css" rel="stylesheet"> 
+        <link href="./public/assets/css/loading-bar.min.css" rel="stylesheet">
+        <link href="./public/assets/css/custom.css" rel="stylesheet">
+        <link href="./public/assets/css/jquery-ui.css" rel="stylesheet">
+        <script src="./vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="./vendors/bower_components/angular/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    </head>
+<body ng-controller="main as core" class="{{bodyClass}}" ng-cloak data-ma-header="{{teal}}" data-lbg="{{lbg}}">
+<div ng-include="'public/template/partials/header.html'" ng-if="!$state.includes('/login') && !$state.includes('reset')"  ng-cloak></div>
+<ng-include src="'public/template/partials/languageheader.html'" ng-if="$state.includes('/login') || $state.includes('reset')"  ></ng-include>
+<div ui-view autoscroll="false"> </div>
+ <div id="loading-bar-container"></div>
+  <!-- Page Loader -->
+       <!--  <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+         -->
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>   
+        <![endif]-->
+
+ <toaster-container toaster-options="toaster"></toaster-container>
+</body>
+<script src="./vendors/bower_components/angular-translate/angular-translate.js"></script>
+<script src="./vendors/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<script src="./vendors/bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="./vendors/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="./vendors/bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+<script src="./vendors/bower_components/angular-translate-handler-log/angular-translate-handler-log.min.js"></script>
+<script src="./vendors/bower_components/angular-sanitize/angular-sanitize.js"></script>
+<!-- inject:js -->
+ <script src="/public/app/libs/angular-animate.js"></script>
+ <script src="/public/app/libs/angular-animate.min.js"></script>
+ <script src="/public/app/libs/angular-local-storage.js"></script>
+ <script src="/public/app/libs/angular-route.min.js"></script>
+ <script src="/public/app/libs/angular-ui-router.min.js"></script>
+ <script src="/public/app/libs/datetime-picker.min.js"></script>
+ <script src="/public/app/libs/dirPagination.js"></script>
+ <script src="/public/app/libs/loading-bar.js"></script>
+ <script src="/public/app/libs/ng-file-upload-shim.min.js"></script>
+ <script src="/public/app/libs/ng-file-upload.min.js"></script>
+ <script src="/public/app/libs/toaster.min.js"></script>
+ <script src="/public/app/libs/ui-bootstrap-tpls-0.6.0.js"></script>
+ <script src="/public/app/libs/ui-bootstrap-tpls-2.1.4.min.js"></script>
+ <script src="/public/app/libs/ui-bootstrap.min.js"></script>
+ <script src="/public/app/core/app.core.js"></script>
+ <script src="/public/app/core/app.js"></script>
+ <script src="/public/app/core/app.thirdparty.js"></script>
+ <script src="/public/app/core/config.js"></script>
+ <script src="/public/app/controller/main.js"></script>
+ <script src="/public/app/constants/constants.js"></script>
+ <script src="/public/app/routes/common.routes.js"></script>
+ <script src="/public/app/factory/factory.js"></script>
+ <script src="/public/app/factory/helper.js"></script>
+ <script src="/public/app/factory/transalation.js"></script>
+ <script src="/public/app/modules/dashboard/dashboard.init.js"></script>
+ <script src="/public/app/modules/dashboard/dashboardController.js"></script>
+ <script src="/public/app/modules/dashboard/dashboardService.js"></script>
+ <script src="/public/app/modules/login/login.init.js"></script>
+ <script src="/public/app/modules/login/loginController.js"></script>
+ <script src="/public/app/modules/login/loginService.js"></script>
+ <script src="/public/app/modules/resetpassword/resetpassword.init.js"></script>
+ <script src="/public/app/modules/resetpassword/resetpasswordController.js"></script>
+ <script src="/public/app/modules/resetpassword/resetpasswordService.js"></script>
+ <script src="/public/app/modules/rooms/rooms.init.js"></script>
+ <script src="/public/app/modules/rooms/roomsController.js"></script>
+ <script src="/public/app/modules/rooms/roomsService.js"></script>
+ <script src="/public/app/modules/shifts/shifts.init.js"></script>
+ <script src="/public/app/modules/shifts/shiftsController.js"></script>
+ <script src="/public/app/modules/shifts/shiftsService.js"></script>
+ <script src="/public/app/modules/user/user.init.js"></script>
+ <script src="/public/app/modules/user/userController.js"></script>
+ <script src="/public/app/modules/user/userService.js"></script>
+ <script src="/public/app/modules/restaurant-admin/employee/employee.init.js"></script>
+ <script src="/public/app/modules/restaurant-admin/employee/employeeController.js"></script>
+ <script src="/public/app/modules/restaurant-admin/employee/employeeService.js"></script>
+ <script src="/public/app/modules/restaurant-admin/restaurant/restaurant.init.js"></script>
+ <script src="/public/app/modules/restaurant-admin/restaurant/restaurantController.js"></script>
+ <script src="/public/app/modules/restaurant-admin/restaurant/restaurantService.js"></script>
+ <script src="/public/app/directives/directives.js"></script>
+ <!-- endinject -->
+
+<script src="./vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="./vendors/bower_components/Waves/dist/waves.min.js"></script>
+<script src="./vendors/bower_components/moment/min/moment.min.js"></script>
+<script src="./vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="./vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+<script src="./vendors/bower_components/salvattore/dist/salvattore.min.js"></script>
+<script src="./vendors/bower_components/jquery.bootgrid/dist/jquery.bootgrid.min.js"></script>
+<script src="./vendors/bower_components/flot/jquery.flot.js"></script>
+<script src="./vendors/bower_components/flot/jquery.flot.resize.js"></script>
+<script src="./vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+<script src="./vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+<script src="./vendors/bower_components/clipboard/dist/clipboard.min.js"></script>
+<script src="./vendors/bower_components/ngclipboard/dist/ngclipboard.min.js"></script>
+<script src="./vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+
+<script src="./public/assets/js/flot-charts/curved-line-chart.js"></script>
+<script src="./public/assets/js/flot-charts/line-chart.js"></script>
+<script src="./public/assets/js/sparklines/jquery.sparkline.min.js"></script>
+<script src="./public/assets/js/jquery-ui.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/jquery.ui.rotatable/1.1/jquery.ui.rotatable.min.js"></script>
+<!-- <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script> -->
+
+<script src="vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+<script src="vendors/bower_components/nouislider/distribute/jquery.nouislider.all.min.js"></script>
+<script src="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="vendors/bower_components/typeahead.js/dist/typeahead.bundle.min.js"></script>
+
+<script src="vendors/bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive.js"></script>
+<script src="vendors/bower_components/ngSweetAlert/SweetAlert.min.js"></script>
+<!-- <script src="vendors/summernote/dist/summernote-updated.min.js"></script> -->
+
+
+<!-- Placeholder for IE9 -->
+<!--[if IE 9 ]>
+    <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+<![endif]-->
+
+<script src="vendors/bower_components/chosen/chosen.jquery.min.js"></script>
+<!-- <script src="vendors/fileinput/fileinput.min.js"></script>
+<script src="vendors/input-mask/input-mask.min.js"></script>
+<script src="vendors/farbtastic/farbtastic.min.js"></script> -->
+
+
+<!-- Placeholder for IE9 -->
+<!--[if IE 9 ]>
+<script src="./vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+<![endif]-->
+
+</html>

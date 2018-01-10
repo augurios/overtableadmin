@@ -1,0 +1,248 @@
+ <section id="main">
+           <div ng-include="'public/template/partials/sidebar.html'" ng-cloak></div>
+
+          
+     <section id="content" >
+         <div class="container">
+             <div class="card">
+                 <div class="card-header">
+                     <h2>Shifts</h2>
+                     <!--<button  class="btn palette-Light-Green bg btn-float waves-effect waves-circle waves-float"><i class="zmdi zmdi-plus"></i></button>-->
+
+                 </div>
+
+                 <div ng-if="shift.length > 0" id="data-table-command-header" class="bootgrid-header container-fluid">
+                     <div class="row">
+                         <div class="col-sm-12 actionBar">
+                             <div class="search form-group">
+                                 <div class="input-group">
+                                     <span class="zmdi icon input-group-addon glyphicon-search"></span>
+                                     <input type="text" ng-model="search" class="search-field form-control" placeholder="{{'SEARCH' | translate}}">
+                                 </div>
+                             </div>
+                             <div class="actions btn-group">
+                                 <div class="dropdown btn-group">
+                                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="dropdown-text">{{pageSize}}</span> <span class="caret"></span></button>
+                                     <ul class="dropdown-menu pull-right" role="menu">
+                                         <li ng-class="(pageSize == 10 ? 'active' : '')"><a ng-click="pageSize = 10" class="dropdown-item dropdown-item-button">10</a></li>
+                                         <li ng-class="(pageSize == 25 ? 'active' : '')"><a ng-click="pageSize = 25" class="dropdown-item dropdown-item-button">25</a></li>
+                                         <li ng-class="(pageSize == 50 ? 'active' : '')"><a ng-click="pageSize = 50" class="dropdown-item dropdown-item-button">50</a></li>
+                                         <li ng-class="(pageSize == totalsize ? 'active' : '')"><a ng-click="pageSize = totalsize" class="dropdown-item dropdown-item-button">{{'ALL' | translate}}</a></li>
+                                     </ul>
+                                 </div>
+                                 <div class="dropdown btn-group">
+                                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="dropdown-text"><span class="zmdi icon zmdi-view-module"></span></span> <span class="caret"></span></button>
+                                     <ul class="dropdown-menu pull-right" role="menu">
+                                         <li ng-repeat="head in headers">
+                                             <div class="checkbox">
+                                                 <label class="dropdown-item">
+                                                     <input name="id" type="checkbox" ng-model="head.show" ng-click="!head.show" class="dropdown-item-checkbox" checked="checked"> {{head.heading}}<i class="input-helper"></i>
+                                                 </label>
+                                             </div>
+                                         </li>
+
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div  class="table-responsive">
+                     <table id="data-table-selection" class="table table-striped">
+                         <thead>
+                             <tr>
+                                 <th>#</th>
+                                 <th ng-repeat="head in headers" ng-click="sort('head')" ng-if="head.show">
+                                     {{head.heading}}
+                                 </th>
+                                 <th data-column-id="commands" class="text-left" style="">
+                                     <a href="javascript:void(0);" class="column-header-anchor ">
+                                         <span class="text">{{'ACTION' | translate}}</span><span class="zmdi icon "></span>
+                                     </a>
+                                 </th>
+                             </tr>
+                         </thead>
+                         <tbody>
+
+
+
+                             <tr dir-paginate="shift in shift|filter:search|itemsPerPage:pageSize" current-page="currentPage">
+                                 <td>{{$index+1}}</td>
+                                 <td ng-if="headers[0].show">{{shift.created_by}}</td>
+                                 <td ng-if="headers[1].show">{{shift.starttime|date:'shortTime'}}</td>
+                                 <td ng-if="headers[2].show">{{shift.endtime|date:'shortTime'}}</td>
+                                 <td ng-if="headers[3].show">{{shift.invoices.length}}</td>
+                                 <td ng-if="headers[4].show">{{shift.orders.length}}</td>
+                              
+                                 <td class="text-left" style="">
+                                     <button class="btn btn-primary" ng-click="openReport(shift)"><i class="zmdi zmdi-eye"></i></button>
+                                    
+                                 </td>
+                             </tr>
+
+                         </tbody>
+                     </table>
+                     <div id="data-table-command-footer" class="bootgrid-footer container-fluid">
+                         <div class="row">
+                             <div class="col-sm-6">
+                                 <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)">
+                                 </dir-pagination-controls>
+                             </div>
+                             <div class="col-sm-6 infoBar">
+                                 <div class="infos">{{'SHOWING' | translate}} {{((currentPage - 1) *pageSize) +1;}}   to   <spam ng-show="currentPage *pageSize<=shift.length">{{currentPage *pageSize}}</spam> <spam ng-show="currentPage *pageSize>shift.length">{{shift.length}}</spam>   of  {{shift.length}} {{'ENTRIES' | translate}}</div>
+                             </div>
+                         </div>
+                     </div>
+
+                 </div>
+
+             </div>
+         </div>
+     </section>
+                    
+            <footer  id="footer" ng-include="'public/template/partials/footer.html'" ng-cloak></footer>
+
+        </section>
+        
+        
+        
+        
+        <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Shift Report</h4>
+		      </div>
+		      <div class="modal-body">
+			      <div class="row">
+			      	<div class="col-md-6"><h5>{{currentShift.starttime|date:'mediumDate'}}</h5></div>
+			      	<div class="col-md-6 text-right"><strong>Bills:</strong> {{currentShift.invoices.length}} | <strong>Orders:</strong> {{currentShift.orders.length}}</div>
+			      </div>
+			      <div class="row">
+			      	<div class="col-md-6">{{currentShift.starttime|date:'shortTime'}} - {{currentShift.endtime|date:'shortTime'}}</div>
+			      	<div class="col-md-6"></div>
+			      </div>
+                    
+                    <div class="invoice-display">                    
+	                	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					    
+						    <div class="panel panel-default" ng-repeat="sh in currentShift.invoices track by $index">
+								    <div class="panel-heading" role="tab" id="headingOne">
+								      <h4 class="panel-title">
+								        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{$index}}" aria-expanded="true" aria-controls="collapseOne{{$index}}">
+								          Invoice: {{sh.clientName}} | invoice #{{sh.invoiceNumber}}
+								        </a>
+								      </h4>
+								    </div>
+								    <div id="collapseOne{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+								      <div class="panel-body">
+		
+		                                  <div class="row">
+		                                      <div class="col-md-3">
+		                                          <strong style="font-size:14px;">People Count : - </strong> 
+		                                          
+		                                      </div>
+		                                      <div class="col-md-3">
+		                                          {{sh.people}}
+		</div>
+		                                      <div class="col-md-3">
+		                                          <strong style="font-size:14px;">Table Number : - </strong> 
+		                                      </div>
+		                                      <div class="col-md-3">
+		                                           {{sh.tables.number}}
+		                                      </div>
+		                                  </div>
+		                                  <br />
+		                                  		                                  <div class="row">
+		                                      <div class="col-md-3">
+		                                          <strong style="font-size:14px;">Total : - </strong> 
+		                                          
+		                                      </div>
+		                                      <div class="col-md-3">
+		                                          {{sh.people}}
+		</div>
+		                                      <div class="col-md-3">
+		                                          <strong style="font-size:14px;">Cash? : - </strong> 
+		                                      </div>
+		                                      <div class="col-md-3">
+		                                           <span ng-show="sh.iscash">yes</span>
+		                                           <span ng-hide="sh.iscash">no</span>
+		                                      </div>
+		                                  </div>
+		                                  <br />
+
+		
+		                      <div class="row" >
+		                          <div class="col-md-12" ng-show="sh.orders && sh.orders.length>0">
+		                              <strong style="font-size:16px; color:#009688;">Orders List</strong><br />
+		                          </div>
+		                      
+		                          <div class="col-md-12" ng-show="sh.orders && sh.orders.length == 0">
+		                              <strong style="font-size:16px; color:#009688;">This invoice has no order</strong><br />
+		                          </div>
+		
+		                          </div>
+		
+		                          <div ng-repeat="order in sh.orders" class="row">
+		
+		                              <div class="col-md-3">
+		                                  <strong>Product Name : - </strong>
+		
+		                              </div>
+		                              <div class="col-md-3">
+		                                  <span>{{order.product.Name}}</span>
+		                              </div>
+		                              <div class="col-md-3">
+		                                  <strong>Quantity : - </strong> 
+		                              </div>
+		                              <div class="col-md-3">
+		                                  <span>{{order.quantity}}</span>
+		                              </div>
+		
+		                          
+		                             
+		
+		                          </div>
+		                      </div>
+								    </div>
+								  </div>
+		
+		                    <div class="panel panel-default" ng-show="showShft.invoices.length==0">
+		                        <div class="panel-heading" role="tab" id="headingOne">
+		                            <h4 class="panel-title">
+		                                <a role="button" >
+		                                    No Invoice Found..
+		                                </a>
+		                            </h4>
+		                        </div>
+		                        
+		                    </div>
+							 
+						</div>
+					</div>	
+						<div class="row">
+							<div class="col-md-4"><p><strong>Total Cost:</strong> {{currentShift.totalCost}}</p></div>
+							<div class="col-md-4"><p><strong>Total Cash: </strong> {{currentShift.totalCash}}</p></div>
+							<div class="col-md-4"><p><strong>People Served: </strong>{{currentShift.totalServed}}</p></div>
+							
+						</div>
+						<div class="row">
+							<div class="col-md-4"><p><strong>Total Sales:</strong> {{currentShift.totalSales}}</p></div>
+							<div class="col-md-4"><p><strong>Total Credit: </strong> {{currentShift.totalCredit}}</p></div>
+							<div class="col-md-4"><strong>Average Per Person: </strong> {{currentShift.avgPerPerson}}</p></div>
+							
+						</div>
+						<div class="row">
+							<div class="col-md-4"><p><strong>Earnings:</strong> {{currentShift.totalEarnings}}</p></div>
+							<div class="col-md-4"></div>
+							<div class="col-md-4"></div>
+						</div>
+						
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>

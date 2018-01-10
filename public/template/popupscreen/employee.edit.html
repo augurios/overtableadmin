@@ -1,0 +1,116 @@
+<div class="modal-dialog" translate-namespace="EDITEMPLOYEE">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="close()">&times;</button>
+            <h4 class="modal-title">{{ 'RESTAURANT' | translate }} : {{info.name}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="card-body">
+                <p class="c-black f-500 m-b-5" translate>.HEAD</p>
+                  
+                <br/>
+
+                <form role="form" name="vm.userform" ng-submit="vm.update()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="fname" class="form-control" ng-model="vm.employee.firstname" ng-required="true" placeholder="{{'FIRST_NAME' | translate}}">
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-local-phone"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" pattern="\d*" class="form-control" name="pno" required="required" placeholder="{{'PHONE_NUMBER' | translate}}" ng-model="vm.employee.phone" ng-required="true">
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i></span>
+                                <div class="fg-line">
+                                    <select name="role" class="form-control" required="required" ng-model="vm.employee.role" ng-required="true">
+                                        <option value="" selected="selected" disabled="">{{'SELECT' | translate}}</option>
+                                        <option value="cashier">{{'CASHIER' | translate}}</option>
+                                        <option value="waitress">{{'WAITRESS' | translate}}</option>
+                                        <option value="management">{{'MANAGEMENT' | translate}}</option>
+                                        <option value="kitchen">{{'KITCHEN' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br/>
+                             <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" name="position" required="required" placeholder="{{'POSITION' | translate}}" ng-model="vm.employee.position" ng-required="true">
+                                </div>
+                            </div>
+
+                           
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" placeholder="{{'LAST_NAME' | translate}}" name="lname" ng-model="vm.employee.lastname" ng-required="true">
+                                </div>
+                                <span class="input-group-addon last"><i class="zmdi zmdi-account"></i></span>
+                            </div>
+                            <br/>
+                            <div class="input-group" ng-if="info.role != 'admin'">
+                                <div class="fg-line">
+                                    <input type="email" username-available uninat="{{vm.employee._id}}" field="emaployeeemail"  restaurant="{{info.userid}}"  class="form-control" placeholder="{{'EMAIL' | translate}}" name="ema" ng-model="vm.employee.email" ng-required="true">
+                                </div>
+                                <span class="input-group-addon last"><i class="zmdi zmdi-email"></i></span>
+                            </div>
+                            <div class="input-group" ng-if="info.role == 'admin'">
+                                <div class="fg-line">
+                                    <input type="email" username-available uninat="{{vm.employee._id}}" field="emaployeeemail"  restaurant="{{vm.employee.restaurant._id}}"  class="form-control" placeholder="{{'EMAIL' | translate}}" name="ema" ng-model="vm.employee.email" ng-required="true">
+                                </div>
+                                <span class="input-group-addon last"><i class="zmdi zmdi-email"></i></span>
+                            </div>
+                            
+                            <br/>
+                            <div class="input-group" ng-if="info.role != 'admin'">
+                                <div class="fg-line">
+                                    <input type="text" pattern="\d*" class="form-control" username-available uninat="{{vm.employee._id}}" field="pin" restaurant="{{vm.employee.restaurant._id}}" placeholder="{{'PIN_NUMBER' | translate}}" name="pin" ng-model="vm.employee.pin" maxlength="4" ng-required="true" ng-maxlength="4" ng-minlength="4">
+                                </div>
+                                <span class="input-group-addon last"><i class="zmdi zmdi-email"></i></span>
+                            </div>
+                            <div class="input-group" ng-if="info.role == 'admin'">
+                                <div class="fg-line">
+                                    <input type="text" pattern="\d*" class="form-control" username-available uninat="{{vm.employee._id}}" field="pin" restaurant="{{info.userid}}" placeholder="{{'PIN_NUMBER' | translate}}" name="pin" ng-model="vm.employee.pin" maxlength="4" ng-required="true" ng-maxlength="4" ng-minlength="4">
+                                </div>
+                                <span class="input-group-addon last"><i class="zmdi zmdi-email"></i></span>
+                            </div>
+                            
+                            <br/>
+                             <div class="input-group form-group">
+                                        
+                                <div class="dtp-container fg-line">
+                                    <input type='text' class="form-control date-picker" name="dob" required="required" placeholder="{{'DATE_OF_BIRTH' | translate}}" ng-model="vm.employee.dateofbirth" ng-required="true" datetimepicker>
+                                </div>
+                                <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                            </div>
+                           
+                            <br/>
+                            <div class="input-group">
+                                <div class="fg-line">
+                                    <div class="col-md-6">
+                                        <button type="submit" ng-disabled="!vm.userform.$valid" class="btn btn-primary btn-sm m-t-5 waves-effect">{{'UPDATE_EMPLOYEE' | translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="close()">{{'CLOSE' | translate}}</button>
+        </div>
+    </div>
+</div>

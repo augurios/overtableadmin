@@ -1,0 +1,77 @@
+    <div menu class="navbar-more-overlay"></div>
+	<nav class="navbar navbar-inverse navbar-fixed-top animate" translate-namespace="TOP_MENU">
+		<div class="container navbar-more visible-xs" >
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search for...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="submit">Submit</button>
+						</span>
+					</div>
+				</div>
+			</form>
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-picture-o"></span>
+						Photos
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-bell-o"></span>
+						Reservations
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="container">
+			<div class="navbar-header hidden-xs">
+				<a class="navbar-brand" href="#">Brand</a>
+			</div>
+
+			<ul class="nav navbar-nav navbar-right mobile-bar" >
+				<li>
+					<a ui-sref="employeedashboard" translate>
+						<span class="menu-icon fa fa-home"></span>
+						.HOME
+					</a>
+				</li>
+				<li>
+					<a ui-sref="empprofile" translate>
+						<span class="menu-icon fa fa-home"></span>
+						.PROFILE
+					</a>
+				</li>
+				<li>
+					<a href="#" ng-click="core.terminate()" >
+						<span class="menu-icon fa fa-sign-out"></span>						
+						<span class="hidden-xs" translate>.TERMINATE_SESSION</span>
+						<span class="visible-xs" translate>.TERMINATE_SESSION</span>
+					</a>
+				</li>
+				<li>
+				<a href="#" class="visible-xs"><span class="menu-icon fa fa-check"></span>	</a>
+						<div class="button-group menulang" uib-dropdown on-toggle="toggled(open)">
+								
+							<a uib-dropdown-toggle id="input" href="">{{lang == 'sp' ? "Spanish" : "English"}}</a>
+							  <ul class="dropdown-menu langul" uib-dropdown-menu aria-labelledby="input">
+							    <li><a href="#" ng-show="lang == 'en'" ng-click="changeLanguage('sp')" translate="BUTTON_LANG_SP"></a></li>
+							    <li><a href="#" ng-show="lang == 'sp'" ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN"></a></li>
+							  </ul>
+						</div>
+					
+				</li>
+				<li class="visible-xs" >
+					<a menu href="#navbar-more-show">
+						<span class="menu-icon fa fa-bars"></span>
+						{{'MORE' | translate}}
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+

@@ -1,0 +1,161 @@
+<div class="modal-dialog" translate-namespace="EDITUSER">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="close()">&times;</button>
+            <h4 class="modal-title" translate>.HEAD </h4>
+        </div>
+        <div class="modal-body">
+            <div class="card-body">
+                
+                <form role="form" name="userform" ng-submit="updateuser()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" tabindex="1" name="fname" class="form-control" ng-model="userinfo.firstname" ng-required="true" placeholder="{{'FIRST_NAME' | translate}}">
+                                    <span ng-model="userinfo._id"></span>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-local-phone"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" tabindex="3" name="pno" required="required" placeholder="{{ 'PHONE_NUMBER' | translate }}" ng-model="userinfo.phone" ng-required="true">
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                 <span class="input-group-addon"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i></span>
+                                <div class="fg-line" tabindex="5">
+                                    <select name="role" class="form-control" required="required" ng-model="userinfo.role" ng-required="true">
+                                        <option value="" selected="selected" disabled="">{{'SELECT' | translate}}</option>
+                                        <option value="restaurant">{{'RESTAURANT' | translate}}</option>
+                                        <option value="admin">{{'ADMIN' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                         
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" tabindex="2" placeholder="{{'LAST_NAME' | translate}}" name="lname" ng-model="userinfo.lastname" ng-required="true">
+                                </div>
+                                <span class="input-group-addon last"><i class="zmdi zmdi-account"></i></span>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <div class="fg-line">
+                                    <input type="email" class="form-control" field="email" username-available  uninat="{{userinfo._id}}" tabindex="4" placeholder="{{'EMAIL' | translate}}" name="ema" ng-model="userinfo.email" ng-required="true">
+                                </div>
+                                <span class="input-group-addon last"><i class="zmdi zmdi-email"></i></span>
+                            </div>
+                           
+                           
+                            <br>
+                            <div class="input-group">
+                               
+                                <div class="fg-line" tabindex="5">
+                                    <div class="fg-line">
+                                    <input type="password" class="form-control" tabindex="6" placeholder="{{'PASSWORD' | translate}}" name="pass" ng-model="userinfo.password">
+                                </div>
+                                </div>  <span class="input-group-addon"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i></span>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                     <div class="row">
+                    	<div class="col-md-12">
+	                    	<h3>Restaurant Data</h3>
+                    	</div>
+                    </div>
+                    <div class="row ">
+                    	<div class="col-md-6">
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="rName" class="form-control" ng-model="userinfo.restauranteObj.rName" ng-required="true" placeholder="Nombre del Restaurante">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="lName" class="form-control" ng-model="userinfo.restauranteObj.lName" ng-required="true" placeholder="Nombre Legal">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="cJuridica" class="form-control" ng-model="userinfo.restauranteObj.cJuridica" ng-required="true" placeholder="Cedula Juridica">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="telefono" class="form-control" ng-model="userinfo.restauranteObj.telefono" ng-required="true" placeholder="Telefono">
+                                </div>
+                            </div>
+                    	</div>
+                    	<div class="col-md-6">
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="direccion" class="form-control" ng-model="userinfo.restauranteObj.direccion" ng-required="true" placeholder="Direccion">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="wifi" class="form-control" ng-model="userinfo.restauranteObj.wifi" ng-required="true" placeholder="Contraseña de Wifi">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="disclaimer" class="form-control" ng-model="userinfo.restauranteObj.disclaimer" ng-required="true" placeholder="Disclaimer">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="number" required="required" name="costTarget" class="form-control" ng-model="userinfo.restauranteObj.costTarget" ng-required="true" placeholder="Politica de costo">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="number" required="required" name="serviceTax" class="form-control" ng-model="userinfo.restauranteObj.serviceTax" ng-required="true" placeholder="Impuesto de servicio">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="number" required="required" name="SaleTax" class="form-control" ng-model="userinfo.restauranteObj.SaleTax" ng-required="true" placeholder="Impuesto de venta">
+                                </div>
+                            </div>
+	                    	<br/>
+                              
+                            <div class="input-group">
+                                <div class="fg-line">
+                                    <div class="col-md-6">
+                                        <button type="submit" ng-disabled="!userform.$valid" class="btn btn-primary btn-sm m-t-5 waves-effect">{{'UPDATE_USER' | translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <br/>
+
+                    	</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="close()">{{'CLOSE' | translate}}</button>
+        </div>
+    </div>
+</div>

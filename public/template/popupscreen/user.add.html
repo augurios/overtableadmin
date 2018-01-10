@@ -1,0 +1,145 @@
+<div class="modal-dialog" >
+
+    <div class="modal-content" translate-namespace="ADDUSER">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="close()">&times;</button>
+            <h4 class="modal-title" translate>.HEAD </h4>
+        </div>
+        <div class="modal-body">
+            <div class="card-body">
+                
+              
+                <form role="form" name="vm.userform" ng-submit="vm.createuser()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="fname" class="form-control" ng-model="vm.user.fname" ng-required="true" placeholder="{{'FIRST_NAME' | translate}}">
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-local-phone"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" name="pno" required="required" placeholder="{{ 'PHONE_NUMBER' | translate }}" ng-model="vm.user.phone" ng-required="true">
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i></span>
+                                <div class="fg-line">
+                                    <select name="role" class="form-control" required="required" ng-model="vm.user.role" ng-required="true">
+                                       <option value="" selected="selected" disabled="">{{'SELECT' | translate}}</option>
+                                        <option value="restaurant">{{'RESTAURANT' | translate}}</option>
+                                        <option value="admin">{{'ADMIN' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br/>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" placeholder="{{'LAST_NAME' | translate}}" name="lname" ng-model="vm.user.lname" ng-required="true">
+                                </div>
+                                <span class="input-group-addon last"><i class="zmdi zmdi-account"></i></span>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <div class="fg-line">
+                                    <input type="email" class="form-control" username-available  uninat="null" field="email" placeholder="{{'EMAIL' | translate}}" name="ema" ng-model="vm.user.email" ng-required="true">
+                                </div>
+                                <span class="input-group-addon last"><i class="zmdi zmdi-email"></i></span>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                    	<div class="col-md-12">
+	                    	<h3>Restaurant Data</h3>
+                    	</div>
+                    </div>
+                    <div class="row ">
+                    	<div class="col-md-6">
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="rName" class="form-control" ng-model="vm.user.restauranteObj.rName" ng-required="true" placeholder="Nombre del Restaurante">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="lName" class="form-control" ng-model="vm.user.restauranteObj.lName" ng-required="true" placeholder="Nombre Legal">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="cJuridica" class="form-control" ng-model="vm.user.restauranteObj.cJuridica" ng-required="true" placeholder="Cedula Juridica">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="telefono" class="form-control" ng-model="vm.user.restauranteObj.telefono" ng-required="true" placeholder="Telefono">
+                                </div>
+                            </div>
+                    	</div>
+                    	<div class="col-md-6">
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="direccion" class="form-control" ng-model="vm.user.restauranteObj.direccion" ng-required="true" placeholder="Direccion">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="wifi" class="form-control" ng-model="vm.user.restauranteObj.wifi" ng-required="true" placeholder="Contraseña de Wifi">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="text" required="required" name="disclaimer" class="form-control" ng-model="vm.user.restauranteObj.disclaimer" ng-required="true" placeholder="Disclaimer">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="number" required="required" name="costTarget" class="form-control" ng-model="vm.user.restauranteObj.costTarget" ng-required="true" placeholder="Politica de costo">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="number" required="required" name="serviceTax" class="form-control" ng-model="vm.user.restauranteObj.serviceTax" ng-required="true" placeholder="Impuesto de servicio">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                <div class="fg-line">
+                                    <input type="number" required="required" name="SaleTax" class="form-control" ng-model="vm.user.restauranteObj.SaleTax" ng-required="true" placeholder="Impuesto de venta">
+                                </div>
+                            </div>
+	                    	<div class="input-group">
+                               <button type="submit" ng-disabled="!vm.userform.$valid" class="btn btn-primary btn-sm m-t-5 waves-effect">{{'CREATE_USER' | translate}}</button>
+                            </div>
+
+                    	</div>
+                    </div>
+                     
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="close()">{{'CLOSE' | translate}}</button>
+           
+        </div>
+    </div>
+</div>

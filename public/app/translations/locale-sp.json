@@ -1,0 +1,142 @@
+{
+  "LANG": "Spanish",
+  "BUTTON_LANG_SP": "Español",
+  "BUTTON_LANG_EN": "English",
+  "EMAIL" : "Correo Electrónico",
+  "PASSWORD" : "Contraseña",
+  "TOKEN" : "Simbólico",
+  "SIGNIN" : "Iniciar sesión",
+  "LOGGINGIN" : "Iniciar sesión...",
+  "CREATEACC" : "Crea una cuenta",
+  "FORGOTPASSWORD" : "Se te olvidó tu contraseña?",
+  "FRGOT_TAGLINE" : "Introduce tu correo electrónico",
+  "RESET_PASSWORD" : "Restablecer la contraseña",
+  "LOGOUT" : "Cerrar sesión",
+  "ALREADY_HAV_ACCOUNT": "¿Ya tienes una cuenta?",
+  "ACCEPTAGREEMENT" : "Acepte el acuerdo de licencia",
+  "MORE" : "Más",
+  "NAME" : "Nombre",
+  "FAILED" : "HA FALLADO" ,
+  "SUCCESS" : "ÉXITO",
+  "SETTINGS" : "Ajustes",
+  "SEARCH" : "Buscar",
+  "ACTION" : "Acción",
+  "SHOWING" : "Demostración",
+  "ENTRIES" : "Entradas",
+  "ALL" : "All",
+  "RESTAURANT" : "Restaurante",
+  "HEADERSEARCH" : "Búsqueda de personas, archivos e informes",
+  "FOOTERTEXT" : "Derechos de autor &copy; 2016 MEAN APP",
+  "FIRST_NAME" : "Nombre de pila",
+  "LAST_NAME" : "Apellido",
+  "PHONE_NUMBER" : "Número de contacto",
+  "SELECT" : "Seleccionar",
+  "CASHIER" : "Cajero",
+  "WAITRESS" : "Camarera",
+  "MANAGEMENT" : "Administración",
+  "KITCHEN" : "Cocina",
+  "POSITION" : "Posición",
+  "SELECT_RESTAURANT" : "Seleccionar Restaurante",
+  "PIN_NUMBER" : "Número de PIN",
+  "DATE_OF_BIRTH" : "Fecha de nacimiento",
+  "CREATE_USER" : "Crear usuario",
+  "UPDATE_USER" : "ACTUALIZAR USUARIO",
+  "CREATE_EMPLOYEE" : "Crear Empleado",
+  "UPDATE_EMPLOYEE" : "Actualizar Empleado",
+  "CLOSE" : "Cerca",
+  "ADMIN" : "Administración",
+  "NOTHINGFOUNDTEMPLATEPARTHEAD" : "No se encontrarón archivos",
+  "NOTHINGFOUNDTEMPLATEPARTTAGLINE" : "Puede <cite title='Añadir registro'>agregar uno</cite>",
+  "HEADER" : {
+    "LOGO" : "LOGO",
+    "VIEWPROFILE" : "Ver perfil",
+    "PRIVACYSETTINGS" : "La configuración de privacidad"
+  },
+  "MENU": {
+    "HOME" : "Casa",
+    "USERS" : "Usuarios",
+    "EMPLOYEE" : "Empleado"
+  },
+  "PAGE" : {
+    "DASHBOARD"  : "Tablero",
+    "LOGIN" : "Iniciar sesión",
+    "RESETPWD" : "Restablecer la contraseña",
+    "MANGEMPLOYE" : "Administrar empleados",
+    "MANGEUSER" : "Administrar usuario",
+    "NOTFOUND" : "Página no encontrada"
+  },
+  "LOGIN" : {
+  	"HEADING" : "¡Hola! Por Favor regístrese",
+  	"TAGLINE" : "Autenticar su restaurante"
+  },
+  "RESETPASSWORD" : {
+    "HEAD" : "¡Hola! Por favor, cambie su contraseña",
+    "NPWD" : "Nueva Contraseña",
+    "CPWD" : "Confirmar Contraseña"
+  },
+  "DASHBOARD" : {
+       "HEADTAGLINE" : "Token de tienda único <small>Utilice este token para autenticar la aplicación de servidor</small>",
+       "GENERATENEWTOKEN" : "Generar nuevo token",
+        "COPYCLICK" : "Haga clic para copiar",
+        "SAVENEWTOKEN" : "Guardar Token nuevo"
+  },
+  "USER" :{
+    "HEAD" : "Administrar usuario"
+  },
+  "EMPLOYEE" : {
+    "HEAD" : "Administrar empleado"
+  },
+  "ADDUSER" : {
+    "HEAD" : "Agregar usuario"
+  },
+  "EDITUSER" : {
+    "HEAD" : "Editar usuario"
+  },
+  "ADDEMPLOYEE" : {
+    "HEAD" : "Añadir empleado"
+  }, 
+  "EDITEMPLOYEE" : {
+    "HEAD" : "Editar empleado"
+  },
+  "TOP_MENU" : {
+  	"HOME" :"Casa",
+  	"TERMINATE_SESSION":"TERMINAR SESIÓN"
+ },
+ "MESSAGES" : {
+      "DONE" : "Hecho. Tarea finalizada!",
+      "ACTIONNOTCOMPLETED" : "No se pudo finalizar la tarea. Inténtalo de nuevo después de algún tiempo!",
+      "NOSUFFICIENTDATA" : "No hay datos suficientes",
+      "NOUSER" : "Usuario no encontrado",
+      "LOGINSUCCESS" : "Se ha registrado correctamente",
+      "INVALIDCREDENTIALS": "Ha proporcionado credenciales no válidas",
+      "LOGGEDOUT": "Has terminado tu sesion satisfactoriamente",
+      "USERCREATIONSUCCESS": "Usuario creado correctamente",
+      "USERCREATIONFAILED": "Error al agregar usuario",
+      "USERUPDATIONSUCCESS": "Usuario actualizado con éxito",
+      "UNAUTHORIZED": "No está autorizado para realizar estas operaciones",
+      "PERMISSIONDENIED": "No está permitido.",
+      "FORBIDDENACCESS": "Acceso denegado",
+      "USERMAILEXISTS": "El correo electrónico ya existe",
+      "USERALREADYEXISTS": "Un usuario ya existe con estos datos",
+      "USERDELETE": "Usuario eliminado correctamente",
+      "INVALIDMAIL": "Email inválido",
+      "INVALIDPHONE": "Numero de telefono invalido",
+      "TOKENUPDATED": "Se ha actualizado tu ficha",
+      "NOTREQUESTEDCHANGE": "Parece que no has solicitado un cambio de contraseña",
+      "LINKEXPIRED": "Este enlace ha caducado. Intente solicitar el cambio de contraseña una vez más",
+      "PASSWORDCHANGED": "Has cambiado tu contraseña",
+      "CANNOTCHANGEPASSWORD": "No puedes cambiar tu contraseña. Ya has cambiado tu contraseña.",
+      "FORGOTMAILSENT": "Se ha enviado el correo electrónico. Restablecer mediante el enlace en el correo",
+      "FORGOTMAILSENTERR": "Hubo algún error entre",
+      "PASSWORDNOTMATCH": "La contraseña no coincide",
+      "ERROROCCURED": "Se produjo un error",
+      "ALLFIELDSRQ": "Todos los campos son obligatorios",
+      "SWALTITLE": {
+        "DELETE" : {
+          "TITLE" : "¿Estás seguro?",
+          "TEXT" : "Usted no será capaz de obtener este registro?",
+          "CONFIRMTEXT" : "Sí, borrarlo!"
+        }
+      }
+ }
+}

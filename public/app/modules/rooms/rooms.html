@@ -1,0 +1,298 @@
+ <section id="main">
+           <div ng-include="'public/template/partials/sidebar.html'" ng-cloak></div>
+
+     
+     <section class="container">
+	     
+	     <div class="card">
+                        <div class="card-header">
+                            <button ng-click="vm.modal()" class="btn palette-Light-Green bg btn-float waves-effect waves-circle waves-float"><i class="zmdi zmdi-plus"></i></button>
+                            <h2>Manage Rooms
+                             <!--<small>                                Ensure that the data attribute [data-identifier="true"] is set on one column header.</small>-->
+                            </h2>
+                        </div>
+            <div ng-if="allRoom.length > 0" id="data-table-command-header" class="bootgrid-header container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 actionBar">
+                        <div class="search form-group">
+                            <div class="input-group">
+                                <span class="zmdi icon input-group-addon glyphicon-search"></span>
+                                <input type="text" data-ng-model="search" class="search-field form-control" placeholder="{{'SEARCH' | translate}}">
+                            </div>
+                        </div>
+                        <div class="actions btn-group">
+                            <div class="dropdown btn-group">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="dropdown-text">{{pageSize}}</span> <span class="caret"></span></button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li ng-class="(pageSize == 10 ? 'active' : '')"><a ng-click="pageSize = 10" class="dropdown-item dropdown-item-button">10</a></li>
+                                    <li ng-class="(pageSize == 25 ? 'active' : '')"><a ng-click="pageSize = 25" class="dropdown-item dropdown-item-button">25</a></li>
+                                    <li ng-class="(pageSize == 50 ? 'active' : '')"><a ng-click="pageSize = 50" class="dropdown-item dropdown-item-button">50</a></li>
+                                    <li ng-class="(pageSize == totalsize ? 'active' : '')"><a ng-click="pageSize = totalsize" class="dropdown-item dropdown-item-button">{{'ALL' | translate}}</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown btn-group">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="dropdown-text"><span class="zmdi icon zmdi-view-module"></span></span> <span class="caret"></span></button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li ng-repeat="head in headers">
+                                        <div class="checkbox">
+                                            <label class="dropdown-item">
+                                                <input name="id" type="checkbox" ng-model="head.show" ng-click="!head.show" class="dropdown-item-checkbox" checked="checked"> {{head.heading}}<i class="input-helper"></i>
+                                            </label>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        <!--<div id="data-table-command-header" class="bootgrid-header container-fluid">
+	                        <div class="row">
+		                        <div class="col-sm-12 actionBar">
+			                        <div class="search form-group">
+				                        <div class="input-group">
+					                        <span class="zmdi icon input-group-addon glyphicon-search"></span> 
+					                        <input type="text" class="search-field form-control" placeholder="Search">
+					                        </div>
+					                        </div>
+					                        <div class="actions btn-group">
+						                        <div class="dropdown btn-group">
+							                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="dropdown-text">10</span> 
+							                        <span class="caret"></span>
+							                        </button>
+							                        <ul class="dropdown-menu pull-right" role="menu">
+								                        <li class="active" aria-selected="true"><a data-action="10" class="dropdown-item dropdown-item-button">10</a></li>
+								                        <li aria-selected="false"><a data-action="25" class="dropdown-item dropdown-item-button">25</a></li>
+								                        <li aria-selected="false"><a data-action="50" class="dropdown-item dropdown-item-button">50</a></li>
+								                        <li aria-selected="false"><a data-action="-1" class="dropdown-item dropdown-item-button">All</a></li>
+								                     </ul>
+								                </div>
+								                <div class="dropdown btn-group">
+									                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+									                <span class="dropdown-text">
+									                	<span class="zmdi icon zmdi-view-module"></span>
+									                </span> 
+									                <span class="caret"></span></button>
+									                
+									                <ul class="dropdown-menu pull-right" role="menu">
+										                <li><div class="checkbox"><label class="dropdown-item"><input name="id" type="checkbox" value="1" class="dropdown-item-checkbox" checked="checked"> ID<i class="input-helper"></i></label></div></li><li><div class="checkbox"><label class="dropdown-item"><input name="sender" type="checkbox" value="1" class="dropdown-item-checkbox" checked="checked"> Sender<i class="input-helper"></i></label></div></li><li><div class="checkbox"><label class="dropdown-item"><input name="received" type="checkbox" value="1" class="dropdown-item-checkbox" checked="checked"> Received<i class="input-helper"></i></label></div></li><li><div class="checkbox"><label class="dropdown-item"><input name="commands" type="checkbox" value="1" class="dropdown-item-checkbox" checked="checked"> Commands<i class="input-helper"></i></label></div></li></ul></div></div></div></div></div>-->
+             <table id="data-table-command" class="table table-striped table-vmiddle bootgrid-table" aria-busy="false">
+                            <thead>
+                             <tr>
+                                 <th>#</th>
+                                 <th ng-repeat="head in headers" ng-click="sort('head')" ng-if="head.show">
+                                     {{head.heading}}
+                                 </th>
+                                 <th data-column-id="commands" class="text-left" style="">
+                                     <a href="javascript:void(0);" class="column-header-anchor ">
+                                         <span class="text">{{'ACTION' | translate}}</span><span class="zmdi icon "></span>
+                                     </a>
+                                 </th>
+                             </tr>
+                         </thead>
+                            <tbody>
+	                            <!--<tr data-row-id="0" ng-repeat="room in allRoom">
+		                        <td class="text-left" style="">{{room.name}}</td>
+	                            <td class="text-left" style="">12</td>
+	                            <td class="text-left" style="">Active</td>
+	                            <td class="text-left" style="">
+                                    <button type="button" class="btn btn-icon command-edit waves-effect waves-circle" data-row-id="10253" data-toggle="modal" data-target="#roomModal"><span class="zmdi zmdi-edit"></span></button> <button type="button" class="btn btn-icon command-delete waves-effect waves-circle" data-row-id="10253"><span class="zmdi zmdi-delete"></span></button></td>
+	                            </tr>-->
+	                            <!--<tr data-row-id="1">
+		                            <td class="text-left" style="">Mezzanine</td>
+		                            <td class="text-left" style="">4</td>
+		                            <td class="text-left" style="">Inactive</td>
+		                            <td class="text-left" style=""><button type="button" class="btn btn-icon command-edit waves-effect waves-circle" data-row-id="10252" data-toggle="modal" data-target="#roomModal"><span class="zmdi zmdi-edit"></span></button> <button type="button" class="btn btn-icon command-delete waves-effect waves-circle" data-row-id="10252"><span class="zmdi zmdi-delete"></span></button></td>
+		                            </tr>-->
+
+
+                                <tr dir-paginate="room in allRoom|filter:search:strict|itemsPerPage:pageSize" current-page="currentPage">
+                                    <td class="text-left">{{$index+1}}</td>
+                                    <td class="text-left" ng-if="headers[0].show">{{room.name}}</td>
+                                    <td class="text-left" ng-if="headers[1].show">{{room.tableNum.length}}</td>
+                                    <td class="text-left" ng-if="headers[2].show" ng-click="chnageStatus(room)">
+                                    <span ng-if="room.active == 1">Active</span>
+                                        <span ng-if="room.active == 0">DeActive</span>                                        
+                                    </td>
+                                    <td class="text-left"> 
+                                    <button type="button" class="btn btn-icon command-edit waves-effect waves-circle" data-row-id="10253" 
+                                    ng-click="openRoom(room)"><span class="zmdi zmdi-edit"></span></button> 
+                                    <button type="button" class="btn btn-icon command-delete waves-effect waves-circle" data-row-id="10253"
+                                    ng-click="deleteRoom(room)"><span class="zmdi zmdi-delete"></span></button></td>
+                                    
+                                </tr>
+	                          </tbody>
+                        </table>
+                        
+            <div id="data-table-command-footer" class="bootgrid-footer container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)">
+                        </dir-pagination-controls>
+                    </div>
+                    <div class="col-sm-6 infoBar">
+                        <div class="infos">{{'SHOWING' | translate}} {{((currentPage - 1) *pageSize) +1;}}   to   <spam ng-show="currentPage *pageSize<=allroom.length">{{currentPage *pageSize}}</spam> <spam ng-show="currentPage *pageSize>allRoom.length">{{allRoom.length}}</spam>   of  {{allRoom.length}} {{'ENTRIES' | translate}}</div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    
+	     
+     </section>
+                    
+            <footer  id="footer" ng-include="'public/template/partials/footer.html'" ng-cloak></footer>
+
+        </section>
+        
+        
+        
+        
+        
+        <div class="modal fade" id="roomModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Edit Room</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="container-fluid room-wrapper">
+			        <div class="row">
+			        	<div class="col-md-9">
+				        	<div class="form-group">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control input-lg" ng-model="editabelRoom.name" placeholder="Room Name">
+                                </div>
+                            </div>
+				        	<div class="room-field" id="draggable" class="ui-widget-content">
+					        	<!--<p>
+						        	<strong>
+						        	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1366 768" style="enable-background:new 0 0 1366 768;" xml:space="preserve">
+										<style type="text/css">
+											.st0{fill:#4CA0E8;}
+										</style>
+										<g>
+											<path class="st0" d="M798,536H471c-6.6,0-12-5.4-12-12V205c0-6.6,5.4-12,12-12h327c6.6,0,12,5.4,12,12v319
+												C810,530.6,804.6,536,798,536z"/>
+										</g>
+										<path class="st0" d="M451,296c-46.4,0.2-84,31.2-84,69.5s37.6,69.3,84,69.5V296z"/>
+										<path class="st0" d="M819,296c46.4,0.2,84,31.2,84,69.5s-37.6,69.3-84,69.5V296z"/>
+										<path class="st0" d="M704.5,185c-0.2-46.4-31.2-84-69.5-84s-69.3,37.6-69.5,84H704.5z"/>
+										<path class="st0" d="M711.5,544c-0.2,46.4-31.2,84-69.5,84s-69.3-37.6-69.5-84H711.5z"/>
+									</svg>
+						        	</strong>
+						        	<span>1</span>
+						        	<i class="zmdi zmdi-delete"></i>
+					        	</p>
+					        	
+					        	<p class="lg">
+						        	<strong>
+						        	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1366 768" style="enable-background:new 0 0 1366 768;" xml:space="preserve">
+										<style type="text/css">
+											.st0{fill:#4CA0E8;}
+											.st1{fill:#E5624C;}
+										</style>
+										<g>
+											<path class="st0" d="M515,539H188c-6.6,0-12-5.4-12-12V208c0-6.6,5.4-12,12-12h327c6.6,0,12,5.4,12,12v319
+												C527,533.6,521.6,539,515,539z"/>
+										</g>
+										<g>
+											<path class="st0" d="M836,539H509c-6.6,0-12-5.4-12-12V208c0-6.6,5.4-12,12-12h327c6.6,0,12,5.4,12,12v319
+												C848,533.6,842.6,539,836,539z"/>
+										</g>
+										<path class="st0" d="M168,303c-46.4,0.2-84,31.2-84,69.5s37.6,69.3,84,69.5V303z"/>
+										<path class="st0" d="M857,302c46.4,0.2,84,31.2,84,69.5s-37.6,69.3-84,69.5V302z"/>
+										<path class="st0" d="M726.5,188c-0.2-46.4-31.2-84-69.5-84s-69.3,37.6-69.5,84H726.5z"/>
+										<path class="st0" d="M733.5,547c-0.2,46.4-31.2,84-69.5,84s-69.3-37.6-69.5-84H733.5z"/>
+										<circle class="st1" cx="887" cy="370" r="39"/>
+										<path class="st0" d="M427.5,188c-0.2-46.4-31.2-84-69.5-84s-69.3,37.6-69.5,84H427.5z"/>
+										<path class="st0" d="M434.5,547c-0.2,46.4-31.2,84-69.5,84s-69.3-37.6-69.5-84H434.5z"/>
+										<g>
+											<path class="st0" d="M1157,539H830c-6.6,0-12-5.4-12-12V208c0-6.6,5.4-12,12-12h327c6.6,0,12,5.4,12,12v319
+												C1169,533.6,1163.6,539,1157,539z"/>
+										</g>
+										<path class="st0" d="M1178,302c46.4,0.2,84,31.2,84,69.5s-37.6,69.3-84,69.5V302z"/>
+										<path class="st0" d="M1047.5,188c-0.2-46.4-31.2-84-69.5-84s-69.3,37.6-69.5,84H1047.5z"/>
+										<path class="st0" d="M1054.5,547c-0.2,46.4-31.2,84-69.5,84s-69.3-37.6-69.5-84H1054.5z"/>
+									</svg>
+						        	</strong>
+						        	<span>2</span>
+						        	<i class="zmdi zmdi-delete"></i>
+					        	</p>-->
+					        	
+				        	</div>
+			        	</div>
+			        	<div class="col-md-3">
+				        	<p>Click a table/bar size to add new one </p>
+				        	<ul>
+					        	<li>
+					        		<a ng-click="addNewTable(2)">
+					        			<img src="/public/assets/img/svg/table-2-e.svg" alt="table">
+					        		</a>
+					        	</li>
+					        	<li>
+					        		<a ng-click="addNewTable(4)">
+					        			<img src="/public/assets/img/svg/table-4-e.svg" alt="table">
+					        		</a>
+					        	</li>
+					        	<li>
+					        		<a ng-click="addNewTable(6)">
+					        			<img src="/public/assets/img/svg/table-6-e.svg" alt="table">
+					        		</a>
+					        	</li>
+					        	<li>
+					        		<a ng-click="addNewTable(8)">
+					        			<img src="/public/assets/img/svg/table-8-e.svg" alt="table">
+					        		</a>
+					        	</li>
+					        	<li>
+					        		<a ng-click="addNewBar()">
+					        			<img src="/public/assets/img/svg/bar-e.svg" alt="table">
+					        		</a>
+					        	</li>
+				        	</ul>
+			        	</div>
+			        </div>
+		        </div>
+		      </div>
+		      <div class="modal-footer">
+			      <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="changeStatus()">{{activetext}}</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary" ng-click="editTable()">Save</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Room:- {{editabelRoom.name}}</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure ? You want to delete table from this room. 
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancle</button>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-success" ng-click="deleteTable()">Delete</button>
+
+                    </div>
+                    
+            </div>
+            
+        </div>
+    </div>
+</div>
+</div>
+
