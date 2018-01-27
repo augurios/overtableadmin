@@ -1,8 +1,8 @@
  <header id="header" class="media" ng-if="nopanel" translate-namespace="HEADER" >
             <div class="pull-left h-logo">
-                <a ui-sref="/" class="hidden-xs" translate>
-                    .LOGO   
-                    <small></small>
+                <a ui-sref="/" class="hidden-xs">
+                    OVERTABLE
+                    <small>Panel Administrativo</small>
                 </a>
                 
                 <div class="menu-collapse" data-ma-action="sidebar-open" data-ma-target="main-menu">
@@ -82,19 +82,20 @@
                 </li>
                 <li class="dropdown hm-profile">
                     <a data-toggle="dropdown" href="">
-                        <img src="./public/assets/img/profile-pics/1.jpg" alt="">
+                        <img ng-show="!userlogo" src="./public/assets/img/profile-pics/1.jpg" alt="">
+                        <img ng-show="userlogo" ng-src={{userlogo}} src="./public/assets/img/profile-pics/1.jpg" alt="">
                     </a>
                     
                     <ul class="dropdown-menu pull-right dm-icon">
                         <li>
-                            <a href="profile-about.html"><i class="zmdi zmdi-account"></i> <span translate> .VIEWPROFILE</span></a>
+                            <a ui-sref="profile"><i class="zmdi zmdi-account"></i> <span translate> .VIEWPROFILE</span></a>
                         </li>
-                        <li>
+                     <!--   <li>
                             <a href=""><i class="zmdi zmdi-input-antenna"></i> <span translate> .PRIVACYSETTINGS</span></a>
                         </li>
                         <li>
                             <a href=""><i class="zmdi zmdi-settings"></i> {{'SETTINGS' | translate}}</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="#" ng-click="core.logout()"><i class="zmdi zmdi-time-restore"></i>{{'LOGOUT' | translate}}</a>
                         </li>

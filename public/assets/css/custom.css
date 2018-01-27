@@ -137,10 +137,19 @@
 /* shift view */ 
 
 
+
+#reportModal .modal-content {
+	background-color:#EAE9E9;
+}
 .invoice-display {
 	margin: 18px 0;
 	box-shadow: inset 1px 1px 4px 1px #0003;
 	padding: 12px;
-	height: 468px;
+	height: 268px;
 	overflow: auto;
+	background-color: #FFF;
+}
+
+.list-group.lg-alt .list-group-item {
+	    padding: 15px 30px !important;
 }

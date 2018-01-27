@@ -34,7 +34,12 @@ module.exports = function (app) {
    
         Shift.find({restaurant:req.headers.logedinuserid})
            .populate('orders')
-           .populate('invoices')
+           .populate({
+                path: 'invoices',
+                // Get friends of friends - populate the 'friends' array for every friend
+                populate: { path: 'servedby' }
+            })
+            .populate('idsshiftopenedby')
            .exec(function (err, result) {
 	           
                if (err) {

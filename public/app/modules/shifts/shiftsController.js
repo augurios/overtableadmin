@@ -45,22 +45,20 @@
         }, function (err) { console.log(err) });
 
 
-        //$scope.shift = [{Name:'Demo', Date: "12/7/17", Times: "10:00am - 3:57pm", Bills: "15", Orders: "18" },
-        //{ Name: 'test',     Date: "12/7/17", Times: "10:00am - 3:57pm", Bills: "15", Orders: "18" },
-        //{ Name: 'Pankaj',   Date: "12/7/17", Times: "10:00am - 3:57pm", Bills: "15", Orders: "18" },
-        //{ Name: 'Akash',    Date: "12/7/17", Times: "10:00am - 3:57pm", Bills: "15", Orders: "18" },
-        //{ Name: 'Himanshu', Date: "12/7/17", Times: "10:00am - 3:57pm", Bills: "15", Orders: "18" },
-        //{ Name: 'Ramesh',   Date: "12/7/17", Times: "10:00am - 3:57pm", Bills: "15", Orders: "18" },
-        //{ Name: 'Vikas',    Date: "12/7/17", Times: "10:00am - 3:57pm", Bills: "15", Orders: "18" }
-        //]
+        
 
         $scope.Calculate = function (data) {
-            for (var cprise = 0; cprise < data.length; cprise++) {
+	        console.log("cal data",data);
+           for (var cprise = 0; cprise < data.length; cprise++) {
                 var order = data[cprise].orders;
                 data[cprise].total = 0;
                 for (var ocount = 0; ocount < order.length; ocount++) {
-                    data[cprise].total = data[cprise].total + order[ocount].product.Price;
+	                if (order[ocount].product){
+		                data[cprise].total = data[cprise].total + order[ocount].product.Price;
+	                }
+                    
                 }
+                
                 data[cprise].grandtotal = data[cprise].total + data[cprise].total * 0.15;
             }
             console.log(data)
@@ -73,6 +71,114 @@
             { heading: "Bills", show: true },
             { heading: "Orders", show: true }];
 
+
+
+        function priceCalculation(invoice) {
+            var orders = invoice.orders;
+            var tax = 0;
+            var prices = { total: 0, grandtotal: 0 };
+
+            if (invoice.override && invoice.override.isPriceOverride) {
+                return prices;
+
+            }
+
+            if (orders && orders.length) {
+                for (var i = 0; i < orders.length; i++) {
+                    if (orders[i].product) {
+                        prices.total = prices.total + (orders[i].product.Price * orders[i].quantity)
+                    } else {
+                        prices.total = 0;
+                    }
+
+                }
+                prices.grandtotal = prices.total + (prices.total * tax) / 100
+            }
+
+            if (invoice.discount && invoice.discount.type) {
+                if (invoice.discount.type === 'percentage') {
+                    var getpercent = (invoice.discount.Amount / 100 * prices.grandtotal);
+                    prices.grandtotal = prices.grandtotal - getpercent;
+                } else {
+                    // var getpercent = (invoice.discount.Amount / 100 * prices.grandtotal);
+                    prices.grandtotal = prices.grandtotal - invoice.discount.Amount;
+                }
+            }
+            //console.log(prices);
+            return prices;
+        }
+
+
+        $scope.getpercentage = function (allInvoice) {
+            // getting 10% for each employee
+
+            var salesPerEmployee = [];
+            for (var i = 0; i < allInvoice.length; i++) {
+                console.log("logging totals", allInvoice[i].prices.total, i);
+                var employee = allInvoice[i].servedby.firstname + " " + allInvoice[i].servedby.lastname;
+                salesPerEmployee.push({ 'employee': employee, "total": allInvoice[i].prices.total });
+            }
+            console.log("Presorted", salesPerEmployee);
+
+
+
+            function compare(a, b) {
+                // Use toUpperCase() to ignore character casing
+                const genreA = a.employee.toUpperCase();
+                const genreB = b.employee.toUpperCase();
+
+                let comparison = 0;
+                if (genreA > genreB) {
+                    comparison = 1;
+                } else if (genreA < genreB) {
+                    comparison = -1;
+                }
+                return comparison;
+            }
+
+            salesPerEmployee.sort(compare);
+
+
+            console.log("sorted by employee", salesPerEmployee);
+
+            var employeeScore = [];
+
+            for (var ii = 0; ii < salesPerEmployee.length; ii++) {
+                if (employeeScore.length == 0) {
+                    employeeScore.push(salesPerEmployee[ii]);
+                    console.log("primer metida", employeeScore);
+                } else if (salesPerEmployee[ii].employee == employeeScore[employeeScore.length - 1].employee) {
+                    console.log("verifica: ", ii, salesPerEmployee[ii].employee, employeeScore[employeeScore.length - 1].employee);
+                    employeeScore[employeeScore.length - 1].total = employeeScore[employeeScore.length - 1].total + salesPerEmployee[ii].total
+                } else {
+                    employeeScore.push(salesPerEmployee[ii]);
+                    console.log("otra metida", employeeScore);
+                }
+            }
+
+            console.log("Sales by employee", employeeScore);
+
+            var percentagePerEmployee = [];
+
+            for (var ii = 0; ii < employeeScore.length; ii++) {
+
+
+                var percentageTax = employeeScore[ii].total - (13 / 100 * employeeScore[ii].total);
+                var percentage = (10 / 100 * percentageTax);
+
+                console.log('total', employeeScore[ii].total, 'percentageTax', percentageTax, percentage, );
+
+                percentagePerEmployee.push({ "Employee": employeeScore[ii].employee, "Percentage": percentage })
+            }
+
+            console.log("Percentage by employee", percentagePerEmployee);
+
+            return percentagePerEmployee;
+
+            //return employeeScore;
+        }
+
+
           $scope.openReport = function (showData) {
               
               $scope.currentShift = showData;
@@ -83,49 +189,77 @@
               $scope.currentShift.totalCredit = 0;
               
               for (var i = 0; i < showData.invoices.length; i++) {
-	           	
-	           	if(showData.invoices[i].iscash) {
-		           	$scope.currentShift.totalCash = $scope.currentShift.totalCash + showData.invoices[i].orders[0].product.Price;
-	           	} else {
-		           	$scope.currentShift.totalCredit = $scope.currentShift.totalCredit + showData.invoices[i].orders[0].product.Price;
-	           	}
-	           	
-	            
+                  var prices = priceCalculation(showData.invoices[i]);
+                  showData.invoices[i].prices = prices;
+                  if (showData.invoices[i].iscash) {
+                      $scope.currentShift.totalCash = $scope.currentShift.totalCash + prices.grandtotal;
+                  } else {
+                      $scope.currentShift.totalCredit = $scope.currentShift.totalCredit + prices.grandtotal;
+                  }
               }
-              
               // get total costs
               
               $scope.currentShift.totalCost = 0;
-               for (var i = 0; i < showData.orders.length; i++) {
-	               $scope.currentShift.totalCost = $scope.currentShift.totalCost + showData.orders[1].product.Costs;
-               }
-              
+              if (showData.orders && showData.orders.length > 0) {
+                  for (var i = 0; i < showData.orders.length; i++) {
+                      try {
+                          if (showData.orders[i].product.Costs)
+                              $scope.currentShift.totalCost = $scope.currentShift.totalCost + showData.orders[i].product.Costs;
+                      } catch (err) {
+
+                      }
+                  }
+              }
               // total Sales
               
-              $scope.currentShift.totalSales =  0;
-               for (var i = 0; i < showData.orders.length; i++) {
-	               $scope.currentShift.totalSales = $scope.currentShift.totalSales + showData.orders[1].product.Price;
+              $scope.currentShift.totalSales = 0;
+              if (showData.orders && showData.orders.length > 0) {
+                  for (var i = 0; i < showData.orders.length; i++) {
+                      try {
+                          if (showData.orders[i].product.Price)
+                              $scope.currentShift.totalSales = $scope.currentShift.totalSales + showData.orders[i].product.Price;
+                      } catch (err) {
+                      }
+                  }
               }
-              
               // get total people served
               
               $scope.currentShift.totalServed = 0;
-              
-              for (var i = 0; i < showData.invoices.length; i++) {
-	            $scope.currentShift.totalServed = $scope.currentShift.totalServed + showData.invoices[i].people;
+
+              if (showData.invoices && showData.invoices.length > 0) {
+                  for (var i = 0; i < showData.invoices.length; i++) {
+                      try {
+                          $scope.currentShift.totalServed = $scope.currentShift.totalServed + showData.invoices[i].people;
+                      } catch (err) {
+
+                      }
+                  }
               }
               
               // get promedio por persona
-              
-              $scope.currentShift.avgPerPerson = $scope.currentShift.totalSales / $scope.currentShift.totalServed;
-              
-              // Calcula earnings
-              
-              $scope.currentShift.totalEarnings = $scope.currentShift.totalSales - $scope.currentShift.totalCost;
-              
-              
+              try {
+                  $scope.currentShift.avgPerPerson = $scope.currentShift.totalSales / $scope.currentShift.totalServed;
+                  $scope.currentShift.avgPerPerson = $scope.currentShift.avgPerPerson.toFixed(2);
+                  // Calcula earnings
+              }
+              catch (err) {
+
+              }
+              try {
+                  $scope.currentShift.totalEarnings = $scope.currentShift.totalSales - $scope.currentShift.totalCost;
+                  $scope.currentShift.totalEarnings = $scope.currentShift.totalEarnings.toFixed(2);
+                  // Calcula earnings
+              } catch (err) {
+
+              }
+
+              try {
+                  $scope.currentShift.employeeScore = $scope.getpercentage(showData.invoices);
+              } catch (err) { };
+
               console.log("Shift Data: ", showData);
-	          $('#reportModal').modal('show');
+              $('#reportModal').modal('show');
+
           }
     }
 })();

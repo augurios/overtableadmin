@@ -6,7 +6,7 @@
         	['application.core',
         	'application.config',
         	'application.routes',
-            'login','dashboard','usermodule','resetpassword','employeemanagement','restaurant','shifts','rooms'
+            'login','dashboard','usermodule','resetpassword','employeemanagement','restaurant','shifts','rooms','profile'
         	]
         )
         .run(['$q', '$http', '$stateParams', '$state', '$rootScope', '$location', '$urlRouter', '$route', '$window','$compile','localStorageService','pathservice','REGEX',

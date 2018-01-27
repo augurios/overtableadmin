@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="serverMeanapp">
 <!--[if IE 9 ]><html class="ie9"><![endif]-->
     <head>
@@ -38,6 +38,7 @@
         <script src="./vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="./vendors/bower_components/angular/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.6.10.min.js"></script>
 
     </head>
 <body ng-controller="main as core" class="{{bodyClass}}" ng-cloak data-ma-header="{{teal}}" data-lbg="{{lbg}}">
@@ -45,57 +46,7 @@
 <ng-include src="'public/template/partials/languageheader.html'" ng-if="$state.includes('/login') || $state.includes('reset')"  ></ng-include>
 <div ui-view autoscroll="false"> </div>
  <div id="loading-bar-container"></div>
-  <!-- Page Loader -->
-       <!--  <div class="page-loader palette-Teal bg">
-            <div class="preloader pl-xl pls-white">
-                <svg class="pl-circular" viewBox="25 25 50 50">
-                    <circle class="plc-path" cx="50" cy="50" r="20"/>
-                </svg>
-            </div>
-        </div>
-         -->
-        <!-- Older IE warning message -->
-        <!--[if lt IE 9]>
-            <div class="ie-warning">
-                <h1 class="c-white">Warning!!</h1>
-                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-                <div class="iew-container">
-                    <ul class="iew-download">
-                        <li>
-                            <a href="http://www.google.com/chrome/">
-                                <img src="img/browsers/chrome.png" alt="">
-                                <div>Chrome</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.mozilla.org/en-US/firefox/new/">
-                                <img src="img/browsers/firefox.png" alt="">
-                                <div>Firefox</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.opera.com">
-                                <img src="img/browsers/opera.png" alt="">
-                                <div>Opera</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.apple.com/safari/">
-                                <img src="img/browsers/safari.png" alt="">
-                                <div>Safari</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                                <img src="img/browsers/ie.png" alt="">
-                                <div>IE (New)</div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <p>Sorry for the inconvenience!</p>
-            </div>   
-        <![endif]-->
+  
 
  <toaster-container toaster-options="toaster"></toaster-container>
 </body>
@@ -146,6 +97,9 @@
  <script src="/public/app/modules/shifts/shifts.init.js"></script>
  <script src="/public/app/modules/shifts/shiftsController.js"></script>
  <script src="/public/app/modules/shifts/shiftsService.js"></script>
+ <script src="/public/app/modules/profile/profile.init.js"></script>
+ <script src="/public/app/modules/profile/profileController.js"></script>
+ <script src="/public/app/modules/profile/profileService.js"></script>
  <script src="/public/app/modules/user/user.init.js"></script>
  <script src="/public/app/modules/user/userController.js"></script>
  <script src="/public/app/modules/user/userService.js"></script>

@@ -1,0 +1,211 @@
+<section id="main">
+    <div ng-include="'public/template/partials/sidebar.html'" ng-cloak></div>
+
+
+    <section id="content">
+        <div class="container">
+            <div class="c-header">
+                <h2>Restaurant Profile</h2>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2> Primary contact<small>Who should we contact?</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control" placeholder="First Name" ng-model="userDetails.firstname">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control" placeholder="Last Name" ng-model="userDetails.lastname">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-local-phone"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control" placeholder="Contact Number" ng-model="userDetails.phone">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control" placeholder="Email Address" ng-model="userDetails.email" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Change Password</h2>
+                </div>
+
+                <div class="card-body card-padding">
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group fg-line">
+                                        <input type="password" class="form-control input-sm" id="exampleInputPassword1" placeholder="New Password" ng-model="upwd">
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group fg-line">
+                                        <input type="password" class="form-control input-sm" id="exampleInputPassword2" placeholder="Confirm Password" ng-model="ucpwd">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Comercial Information</h2>
+                </div>
+
+                <div class="card-body card-padding">
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" required="required" name="rName" class="form-control ng-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-required ng-touched" ng-model="userDetails.restauranteObj.rName" ng-required="true" placeholder="Nombre del Restaurante" style="">
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" required="required" name="lName" class="form-control ng-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-required ng-touched" ng-model="userDetails.restauranteObj.lName" ng-required="true" placeholder="Nombre Legal" style="">
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" required="required" name="cJuridica" class="form-control ng-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-required ng-touched" ng-model="userDetails.restauranteObj.cJuridica" ng-required="true" placeholder="Cedula Juridica" style="">
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" required="required" name="telefono" class="form-control ng-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-required ng-touched" ng-model="userDetails.restauranteObj.telefono" ng-required="true" placeholder="Telefono" style="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" required="required" name="direccion" class="form-control ng-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-required ng-touched" ng-model="userDetails.restauranteObj.direccion" ng-required="true" placeholder="Direccion" style="">
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" required="required" name="wifi" class="form-control ng-touched ng-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-required" ng-model="userDetails.restauranteObj.wifi" ng-required="true" placeholder="Contraseña de Wifi" style="">
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-label-alt"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" required="required" name="disclaimer" class="form-control ng-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-required ng-touched" ng-model="userDetails.restauranteObj.disclaimer" ng-required="true" placeholder="Disclaimer" style="">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Commercial Logo<small>The file input plugin allows you to create a visually appealing file or image input widgets</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    
+
+                    <p class="f-500 c-black m-b-20">Image Preview</p>
+
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput-preview thumbnail" data-trigger="fileinput">
+                            <img ng-src={{logo}} style="width:100%" ng-show="logo" />
+                        </div>
+                        <div>
+                            <span class="btn btn-info btn-file waves-effect">
+                                <span ng-show="!logo" class="fileinput-new" ng-click="openfilemodel()">Select image</span>
+                                <span ng-show="logo" class="fileinput-new" ng-click="openfilemodel()">Change Image</span>
+                                <!--<span ng-show="logo" class="fileinput-new" ng-click="openfilemodel()">Change</span>-->
+                                <input type="file" name="fileinputlogo" id="fileinputlogo" style="display:none;">
+                            </span>
+                            <a href="#" ng-show="logo" class="btn btn-danger fileinput-new waves-effect" data-dismiss="fileinput" ng-click="removelogo()">Remove Image</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body card-padding">
+                    <button type="button" class="btn btn-primary btn-sm m-t-10 waves-effect" ng-click="updateUser()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" ng-include="'public/template/partials/footer.html'" ng-cloak></footer>
+
+</section>
+
+
+
+
