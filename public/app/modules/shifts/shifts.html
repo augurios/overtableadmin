@@ -132,7 +132,8 @@
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{$index}}" aria-expanded="true" aria-controls="collapseOne{{$index}}">
-                                        Invoice: {{sh.clientName}} | invoice #{{sh.invoiceNumber}}
+                                        Invoice: {{sh.clientName}} | invoice #{{sh.invoiceNumber}} <span ng-show="sh.override.isPriceOverride"> | CANCELED </span> <span ng-show="sh.discount"> | DISCOUNT  </span> | total: {{sh.prices.grandtotal}} |<span ng-show="sh.iscash">Cash</span>
+                                            <span ng-hide="sh.iscash">Card</span>
                                     </a>
                                 </h4>
                             </div>

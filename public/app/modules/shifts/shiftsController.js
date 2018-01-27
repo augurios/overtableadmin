@@ -183,6 +183,7 @@
               
               $scope.currentShift = showData;
                
+               console.log('shift stuff',$scope.currentShift.invoices);
               // get total in cash
               
               $scope.currentShift.totalCash = 0;
