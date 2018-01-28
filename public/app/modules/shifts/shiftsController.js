@@ -114,9 +114,9 @@
 
             var salesPerEmployee = [];
             for (var i = 0; i < allInvoice.length; i++) {
-                console.log("logging totals", allInvoice[i].prices.total, i);
+                console.log("logging totals", allInvoice[i].prices.grandtotal, i);
                 var employee = allInvoice[i].servedby.firstname + " " + allInvoice[i].servedby.lastname;
-                salesPerEmployee.push({ 'employee': employee, "total": allInvoice[i].prices.total });
+                salesPerEmployee.push({ 'employee': employee, "total": allInvoice[i].prices.grandtotal });
             }
             console.log("Presorted", salesPerEmployee);
 
