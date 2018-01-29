@@ -15,6 +15,11 @@ var ShiftSchema = new mongoose.Schema({
     created_by: String,
     updated_by: String,
     isactive: { type: Number, default: 1 },
+    openingBalance: Number,
+    closingBalance: Number,
+    openShiftBy: String,
+    closeShiftBy: String,
+    edits: []
 });
 
 mongoose.model('Shift', ShiftSchema);
