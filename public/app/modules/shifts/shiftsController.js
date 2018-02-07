@@ -10,7 +10,7 @@
     function Controller(SessionService, localStorageService, dashboardService, toaster, session, $translate, translationService, $timeout, $scope, shiftsService, $rootScope) {
         
         $scope.currentPage = 1;
-        $scope.pageSize = 5;
+        $scope.pageSize = 10;
        
         $scope.setPaging = function () {
 
@@ -27,7 +27,8 @@
 
         }
 
-
+		$scope.shiftLoaded = false;
+		
         shiftsService.GetShifting($rootScope.logedInUser.userid).then(function (response) {
             response = _.filter(response, function (num) { return num.restaurant == $rootScope.logedInUser.userid; });
             
@@ -40,7 +41,13 @@
 
                 }
             }
+            
+            
             $scope.shift = $scope.Calculate(response);
+            $scope.shiftLoaded = true;
+            console.log('shift loaded',$scope.shiftLoaded);
+            $('.preloader.pl-xxl').addClass('hidden');
+            
           
         }, function (err) { console.log(err) });
 
@@ -213,16 +220,16 @@
               }
               // total Sales
               
-              $scope.currentShift.totalSales = 0;
-              if (showData.orders && showData.orders.length > 0) {
-                  for (var i = 0; i < showData.orders.length; i++) {
-                      try {
-                          if (showData.orders[i].product.Price)
-                              $scope.currentShift.totalSales = $scope.currentShift.totalSales + showData.orders[i].product.Price;
-                      } catch (err) {
-                      }
-                  }
-              }
+              $scope.currentShift.totalSales = $scope.currentShift.totalCash + $scope.currentShift.totalCredit;
+              //if (showData.orders && showData.orders.length > 0) {
+              //    for (var i = 0; i < showData.orders.length; i++) {
+              //        try {
+              //            if (showData.orders[i].product.Price)
+              //                $scope.currentShift.totalSales = $scope.currentShift.totalSales + showData.orders[i].product.Price;
+              //        } catch (err) {
+              //        }
+              //    }
+              //}
               // get total people served
               
               $scope.currentShift.totalServed = 0;

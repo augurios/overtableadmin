@@ -1,0 +1,189 @@
+<section id="main">
+    <div ng-include="'public/template/partials/sidebar.html'" ng-cloak></div>
+
+
+    <section id="content">
+        <div class="container">
+            <div class="c-header">
+                <h2>Report Generator</h2>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2> Date Selector<small>Select a time period to generate report.</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                           <p class="c-black f-500 m-b-20">Starting Date</p>
+
+                           <div class="input-group form-group">
+                               <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                   <div class="dtp-container fg-line">
+                                   <input type='text' class="form-control date-picker" ng-model="StartDate" placeholder="Date" ng-required="true" datetimepicker>
+                               </div>
+                           </div>
+                       </div>
+                        <div class="col-sm-6">
+                           <p class="c-black f-500 m-b-20">Ending Date</p>
+
+                           <div class="input-group form-group">
+                               <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                   <div class="dtp-container fg-line">
+                                  <input type='text' class="form-control date-picker" placeholder="date" ng-required="true"  ng-model="endDate" datetimepicker>
+                               </div>
+                           </div>
+                       </div>
+                    </div>
+                    <div class="row">
+	                    <div class="col-ms-12">
+		                    <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect" ng-click="makeReport(StartDate,endDate);">Get Report</button>
+	                    </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+	            <div class="card-body card-padding" ng-if="isReportLoading">
+		            <div class="text-center">
+		             <div class="preloader pl-xxl">
+	                     <svg class="pl-circular" viewBox="25 25 50 50">
+	                         <circle class="plc-path" cx="50" cy="50" r="20"></circle>
+	                     </svg>
+	                 </div>
+	            </div>
+	        </div>
+            </div>
+            
+            <div class="card c-dark palette-Light-Blue bg" ng-if="isReport">
+                <div class="card-header">
+                    <h2><i class="zmdi zmdi-caret-up-circle m-r-5"></i>
+                  {{AllShiftGrandTotal}} <small>{{StartDate}} - {{endDate}} Total sales of period Shifts closings.</small></h2>
+                </div>
+
+                 <div class="card-body">
+                                <h2 class="m-t-0 m-b-15 c-white">
+	                                
+                                    
+                                </h2>
+								<div class="chart-edge">
+                                 <div class="ns-chart flot-chart m-b-20" id="number-stats-chart"></div>
+								</div>
+                        </div>
+                 </div>
+            
+           <div id="c-grid" class="clearfix" data-columns="2" ng-if="isReport">
+                    <div class="column size-1of2">
+	                    
+	                    <!-- expences widget -->
+	                    <div class="card c-dark palette-Light-Blue-400
+ bg">
+                            <div class="card-header p-b-0">
+                                <h2>Expences</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group lg-alt lg-even-white">
+                                    <div class="list-group-item media">
+                                        <div class="pull-right hidden-sm">
+                                            <div class="sparkline-bar-1"></div>
+                                        </div>
+
+                                        <div class="media-body ns-item">
+                                            <small>Tax (13%)</small>
+                                            <h3>{{(AllShiftGrandTotal * 13/100).toFixed(2)}}</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="list-group-item media">
+                                        <div class="pull-right hidden-sm">
+                                            <div class="sparkline-bar-2"></div>
+                                        </div>
+
+                                        <div class="media-body ns-item">
+                                            <small>Total employees (10%)</small>
+                                            <h3>{{employeesPercent}}</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="list-group-item media">
+                                        <div class="pull-right hidden-sm">
+                                            <div class="sparkline-bar-3"></div>
+                                        </div>
+
+                                        <div class="media-body ns-item">
+                                            <small>Ingredients</small>
+                                            <h3>{{allIngridiantTotal}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-5"></div>
+                            </div>
+                        </div>
+ 						<!-- end expences --> 
+                    </div>
+                    
+                    <div class="column size-1of2">
+	                    
+	                    <div class="card">
+                            <div class="card-header">
+                                <h2>Products by Sales <small>showing first top 5</small></h2>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="list-group lg-alt c-overflow mCustomScrollbar _mCS_4 mCS-autoHide mCS_no_scrollbar" style="position: relative; overflow: visible;"><div id="mCSB_4" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0"><div id="mCSB_4_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y mCS_x_hidden mCS_no_scrollbar_x" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                                    <span href="" class="list-group-item media" ng-repeat="pro in topProduct| limitTo:limit">
+                                        <div class="pull-left">
+                                            <img class="avatar-img mCS_img_loaded" src="{{pro.product.image}}" alt="">
+                                        </div>
+
+                                        <div class="media-body">
+                                            <div class="lgi-heading">{{pro.product.Name}}</div>
+                                            <small class="lgi-text">Sales: {{pro.product.Price * pro.count}}, times ordered:{{pro.count}}</small>
+                                        </div>
+                                    </span>
+                                    
+                                      <!--<span href="" class="list-group-item media">
+                                        <div class="pull-left">
+                                            <img class="avatar-img mCS_img_loaded" src="https://ithoursclientdata.s3-us-west-2.amazonaws.com/8d01e929a647d1f88a1f9e08dbfa184" alt="">
+                                        </div>
+
+                                        <div class="media-body">
+                                            <div class="lgi-heading">Product name</div>
+                                            <small class="lgi-text">Sales: 800, times ordered: 8</small>
+                                        </div>
+                                    </span>-->
+                                    
+                                    <a href="" class="list-group-item view-more" ng-if="isShow" ng-click="viewAll()">
+                                        <i class="zmdi zmdi-long-arrow-right"></i> View all
+                                    </a>
+                                    <a href="" class="list-group-item view-more" ng-if="!isShow"  ng-click="Showless()">
+                                        <i class="zmdi zmdi-long-arrow-left"></i> show less
+                                    </a>
+                                </div></div><div id="mCSB_4_scrollbar_vertical" class="mCSB_scrollTools mCSB_4_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_4_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 0px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div><div id="mCSB_4_scrollbar_horizontal" class="mCSB_scrollTools mCSB_4_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_4_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar"></div></div><div class="mCSB_draggerRail"></div></div></div></div>
+                            </div>
+                        </div>
+	                    
+	                    
+                    </div>
+           </div>
+            
+
+            </div>
+            
+    </section>
+	
+	<script>
+		
+	
+	</script>
+	
+    <footer id="footer" ng-include="'public/template/partials/footer.html'" ng-cloak></footer>
+
+</section>
+
+
+
+

@@ -63,7 +63,7 @@
                 profileService.getUserDetails(loggedUser.userid).then(function (resData) {
                     if (resData.data.image)
                         $scope.userlogo = resData.data.image;
-                    $scope.$apply();
+                    //$scope.$apply();
                 });
             } catch (err) {
 

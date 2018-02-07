@@ -11,6 +11,8 @@
                     <!--<button  class="btn palette-Light-Green bg btn-float waves-effect waves-circle waves-float"><i class="zmdi zmdi-plus"></i></button>-->
 
                 </div>
+                
+               
 
                 <div ng-if="shift.length > 0" id="data-table-command-header" class="bootgrid-header container-fluid">
                     <div class="row">
@@ -96,7 +98,13 @@
                     </div>
 
                 </div>
-
+				<div class="text-center" ng-hide="$scope.shiftLoaded">
+	                		<div class="preloader pl-xxl">
+                                <svg class="pl-circular" viewBox="25 25 50 50">
+                                    <circle class="plc-path" cx="50" cy="50" r="20"></circle>
+                                </svg>
+                            </div>
+               </div>
             </div>
         </div>
     </section>
@@ -363,7 +371,7 @@
 
                                         <div class="media-body ns-item">
                                             <small>Total income</small>
-                                            <h3>{{currentShift.totalSales}}</h3>
+                                            <h3>{{currentShift.totalCash + currentShift.totalCredit}}</h3>
                                         </div>
                                     </div>
                                 </div>

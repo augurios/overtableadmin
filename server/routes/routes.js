@@ -11,6 +11,9 @@ const Order = require('../model/Order');
 const Product = require('../model/Product');
 const Table = require('../model/Table');
 const Room = require('../model/Room');
+const Ingredients = require('../model/Ingredients');
+const Sides = require('../model/Sides');
+
 module.exports = function (app) {
 
   //global constants/paths
