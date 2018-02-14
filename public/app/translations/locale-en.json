@@ -23,7 +23,7 @@
   "ACTION" : "Action",
   "SHOWING" : "Showing",
   "ENTRIES" : "Entries",
-  "ALL" : "Todas",
+  "ALL" : "All",
   "RESTAURANT" : "Restaurant",
   "HEADERSEARCH" : "Search for people, files & reports",
   "FOOTERTEXT" : "Copyright &copy; 2016 MEAN APP",
@@ -55,7 +55,10 @@
   "MENU": {
     "HOME" : "Home",
     "USERS" : "Users",
-    "EMPLOYEE" : "Employee"
+    "EMPLOYEE" : "Employee",
+    "SHIFTMANAGER" : "Shift Manager",
+    "ROOMMANAGER" : "Room Manager",
+    "REPORTS" : "Reports"
   },
   "PAGE" : {
     "DASHBOARD"  : "Dashboard",
@@ -102,7 +105,7 @@
   	"HOME" :"HOME",
   	"TERMINATE_SESSION":"Terminate Session"
  },
-  "MESSAGES" : {
+ "MESSAGES" : {
       "DONE" : "Done. Task Finished!",
       "ACTIONNOTCOMPLETED" : "Task Could not be Finished. Try again after sometime!",
       "NOSUFFICIENTDATA" : "No enough data provided.",
@@ -138,5 +141,46 @@
           "CONFIRMTEXT" : "Yes, delete it!"
         }
       }
-  }
+  },
+ "firstname":"Firstname",
+ "lastname":"lastname",
+ "email":"email",
+ "phone":"phone",
+ "role":"role",
+ "SHIFTS":"Shifts",
+ "Name":"Name",
+ "Start time":"Start time",
+ "End time":"End time",
+ "Bills":"Bills",
+ "Orders":"Orders",
+ "SHIFTREPORT":"Shift Report",
+ "INVOICE":"Invoice",
+ "CANCELED":"CANCELED",
+ "DISCOUNT":"DISCOUNT",
+ "CASH":"Cash",
+ "CARD":"Card",
+ "REPORTGENERATOR":"Report Generator",
+ "DATESELECTOR":"Date Selector",
+ "SELECTTIMEPERIOD":"Select a time period to generate report.",
+ "STARTINGDATE":"Starting Date",
+ "ENDINGDATE":"Ending Date",
+ "GETREPORT":"Get Report",
+ "ACCURACYALERT":"Remember! information in report is as accurate as the information provided during operations!.",
+ "TOTALSALES":"Total sales of period Shifts closings",
+ "EXPENCES":"Expences",
+ "TAX":"Tax",
+ "TOTALEMPLOYEES":"Total employees",
+ "SUPPLIES":"ingredients",
+ "STADISTICS":"Stadistics",
+ "AVERAGEPERPERSON":"Average Per Person",
+ "AVERAGEINTABLES":"Average Time in tables",
+ "PRODUCTSBYSALES":"Products by Sales",
+ "SHIFTRESULTS":"Shift Results",
+ "TOTALCOSTS":"Total Cost",
+ "SALESTOTAL":"Total Sales",
+ "CASHIERHISTORY":"Cashier History",
+ "OPENINGSHIFT":"Opening Shift",
+ "CLOSINGSHIFT":"Closing Shift",
+ "PAYMENTMETHODS":"Payment Methods",
+ "TOTALPEOPLE": "people served"
 }

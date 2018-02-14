@@ -17,7 +17,10 @@
         service.newToken    = newToken;
         service.GetShifting = GetShifting;
         service.GetShiftByDate = GetShiftByDate;
+        service.GetCategory =GetCategory;
         service.getUserDetails = getUserDetails;
+        service.GetProduction = GetProduction; 
+        service.Getretailprod = Getretailprod;
         service.updateUser = updateUser;
         service.updateUserImageToDB = updateUserImageToDB;
         return service;
@@ -74,6 +77,33 @@
                 }, handleError('Error getting user data'));
             });
         }
+
+         function GetCategory(resid) {
+        var _self = this;
+        return $q((resolve, reject) => {
+            $http.post('/api/get/getProductWithCat', { id:resid}).then(function (res) {
+                resolve(res.data);
+            }, handleError('Error getting all users'));
+        });
+    }
+         function GetProduction(resid) {
+             var _self = this;
+             return $q((resolve, reject) => {
+                 $http.post('/api/get/getProduction', { id: resid }).then(function (res) {
+                     resolve(res.data);
+                 }, handleError('Error getting all users'));
+             });
+         }
+         
+
+         function Getretailprod(resid) {
+             var _self = this;
+             return $q((resolve, reject) => {
+                 $http.post('/api/get/getRetailProduct', { id: resid }).then(function (res) {
+                     resolve(res.data);
+                 }, handleError('Error getting all users'));
+             });
+         }
         // private functions
 
         function handleSuccess(res) {

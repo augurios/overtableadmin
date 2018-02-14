@@ -28,7 +28,7 @@
         
         function doneCallbacksDataGrid(data){
 
-            if(data.success){
+         if(data.success){
             vm.users = data.data
             $scope.headers = []
             var objt = []

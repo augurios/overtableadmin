@@ -53,9 +53,12 @@
     "PRIVACYSETTINGS" : "La configuración de privacidad"
   },
   "MENU": {
-    "HOME" : "Casa",
+    "HOME" : "Inicio",
     "USERS" : "Usuarios",
-    "EMPLOYEE" : "Empleado"
+    "EMPLOYEE" : "Empleados",
+    "SHIFTMANAGER" : "Turnos",
+    "ROOMMANAGER" : "Salones",
+    "REPORTS" : "Reportes"
   },
   "PAGE" : {
     "DASHBOARD"  : "Tablero",
@@ -75,7 +78,7 @@
     "CPWD" : "Confirmar Contraseña"
   },
   "DASHBOARD" : {
-       "HEADTAGLINE" : "Token de tienda único <small>Utilice este token para autenticar la aplicación de servidor</small>",
+       "HEADTAGLINE" : "Token de tienda único <small>Utilice este token para autenticar el cliente.</small>",
        "GENERATENEWTOKEN" : "Generar nuevo token",
         "COPYCLICK" : "Haga clic para copiar",
         "SAVENEWTOKEN" : "Guardar Token nuevo"
@@ -84,7 +87,7 @@
     "HEAD" : "Administrar usuario"
   },
   "EMPLOYEE" : {
-    "HEAD" : "Administrar empleado"
+    "HEAD" : "Administrar empleados"
   },
   "ADDUSER" : {
     "HEAD" : "Agregar usuario"
@@ -99,7 +102,7 @@
     "HEAD" : "Editar empleado"
   },
   "TOP_MENU" : {
-  	"HOME" :"Casa",
+  	"HOME" :"Inicio",
   	"TERMINATE_SESSION":"TERMINAR SESIÓN"
  },
  "MESSAGES" : {
@@ -138,5 +141,46 @@
           "CONFIRMTEXT" : "Sí, borrarlo!"
         }
       }
- }
+ },
+ "firstname":"Nombre",
+ "lastname":"Apellido",
+ "email":"Correo",
+ "phone":"telefono",
+ "role":"rol",
+ "SHIFTS":"Turnos",
+ "Name":"Empleado",
+ "Start time":"Inicio",
+ "End time":"Cierre",
+ "Bills":"Cuentas",
+ "Orders":"Ordenes",
+ "SHIFTREPORT":"Reporte de turno(cierre)",
+ "INVOICE":"Cuenta",
+ "CANCELED":"CANCELADA",
+ "DISCOUNT":"DESCUENTO",
+ "CASH":"Efectivo",
+ "CARD":"Tarjeta",
+ "REPORTGENERATOR":"Generador de Reportes",
+ "DATESELECTOR":"Seleccionador de fechas",
+ "SELECTTIMEPERIOD":"Seleccione un periodo de tiempo para generar el reporte.",
+ "STARTINGDATE":"Fecha Inicial",
+ "ENDINGDATE":"Fecha Final",
+ "GETREPORT":"Generar Reporte",
+ "ACCURACYALERT":"¡Recuerda! la información en el informe es tan precisa como la información proporcionada durante las operaciones.",
+ "TOTALSALES":"Total de las ventas de los turnos en el periodo seleccionado",
+ "EXPENCES":"Gastos",
+ "TAX":"Impuesto de Venta",
+ "TOTALEMPLOYEES":"Total empleados",
+ "SUPPLIES":"Proveduria",
+ "STADISTICS":"Stadisticas",
+ "AVERAGEPERPERSON":"Promedio por persona",
+ "AVERAGEINTABLES":"Promedio de tiempo en mesa",
+ "PRODUCTSBYSALES":"Productos por ventas",
+ "SHIFTRESULTS":"Resultados de turno",
+ "TOTALCOSTS":"Total Costos",
+ "SALESTOTAL":"Total Ventas",
+ "CASHIERHISTORY":"Arqueo de caja",
+ "OPENINGSHIFT":"Abriendo Caja",
+ "CLOSINGSHIFT":"Cierre de Caja",
+ "PAYMENTMETHODS":"Metodos de pago",
+ "TOTALPEOPLE": "Personas Atendidas"
 }

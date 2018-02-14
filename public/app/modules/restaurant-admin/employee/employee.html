@@ -34,7 +34,7 @@
                                         <li ng-repeat="head in headers">
                                             <div class="checkbox">
                                                 <label class="dropdown-item">
-                                                    <input name="id" type="checkbox" ng-model="head.show" ng-click="!head.show" class="dropdown-item-checkbox" checked="checked"> {{head.heading}}<i class="input-helper"></i></label>
+                                                    <input name="id" type="checkbox" ng-model="head.show" ng-click="!head.show" class="dropdown-item-checkbox" checked="checked"> {{head.heading  | translate}}<i class="input-helper"></i></label>
                                             </div>
                                         </li>
                                        
@@ -49,7 +49,7 @@
                         <thead>
                             <tr>
                             <th>#</th>
-                                <th ng-repeat="head in headers" ng-click="sort('head')" ng-if="head.show">{{head.heading}}
+                                <th ng-repeat="head in headers" ng-click="sort('head')" ng-if="head.show">{{ head.heading | translate}}
                                 </th>
                                 <th data-column-id="commands" class="text-left" style="">
                                     <a href="javascript:void(0);" class="column-header-anchor ">

@@ -247,7 +247,7 @@
               // get promedio por persona
               try {
                   $scope.currentShift.avgPerPerson = $scope.currentShift.totalSales / $scope.currentShift.totalServed;
-                  $scope.currentShift.avgPerPerson = $scope.currentShift.avgPerPerson.toFixed(2);
+                  $scope.currentShift.avgPerPerson = $scope.currentShift.avgPerPerson.toLocaleString('en');
                   // Calcula earnings
               }
               catch (err) {
@@ -255,7 +255,7 @@
               }
               try {
                   $scope.currentShift.totalEarnings = $scope.currentShift.totalSales - $scope.currentShift.totalCost;
-                  $scope.currentShift.totalEarnings = $scope.currentShift.totalEarnings.toFixed(2);
+                  $scope.currentShift.totalEarnings = $scope.currentShift.totalEarnings.toLocaleString('en');
                   // Calcula earnings
               } catch (err) {
 
