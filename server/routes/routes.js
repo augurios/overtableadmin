@@ -13,6 +13,8 @@ const Table = require('../model/Table');
 const Room = require('../model/Room');
 const Ingredients = require('../model/Ingredients');
 const Sides = require('../model/Sides');
+const Category = require('../model/Category');
+const Production = require('../model/Production');
 
 module.exports = function (app) {
 

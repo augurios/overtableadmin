@@ -9,8 +9,8 @@
     /* @ngInject */
     function Controller(SessionService, localStorageService, dashboardService, toaster, session, $translate, translationService, $timeout, $scope, reportsService, $rootScope) {
 	    
-        $scope.endDate = "08/02/2018"          //forUiDate(new Date())
-        $scope.StartDate = "04/01/2018"        // forUiDate(new Date(new Date().getTime() - (7 * 24 * 60 * 60 * 1000)))
+        $scope.endDate = forUiDate(new Date())    
+        $scope.StartDate =  forUiDate(new Date(new Date().getTime() - (7 * 24 * 60 * 60 * 1000)))
 
 
         $scope.ingcurrentPage = 1;
@@ -93,7 +93,13 @@
             //console.log(prices);
             return prices;
         }
+        function getOneExtarDate(time) {
 
+            var today = new Date(time);
+            today.setHours(today.getHours() + 1);
+
+            return today;
+        }
         $scope.makeReport = function (startdate, enddate) {
 
             if (startdate && enddate) {
@@ -123,13 +129,21 @@
 
                     $scope.allIngridiantTotal = 0;
 
+                    var AverageTime = 0;
+                    var invoicecount = 0;
+                    var peopleCount = 0;
                     for (var i = 0; i < $scope.Shifts.length; i++) {
                         $scope.Shifts[i].ShiftGrandTotal = 0;
+                       
                         for (var j = 0; j < $scope.Shifts[i].invoices.length; j++) {
 
+                            peopleCount = peopleCount + $scope.Shifts[i].invoices[j].people || 1;
+                            AverageTime = AverageTime + Math.floor((new Date($scope.Shifts[i].invoices[j].closeAt || getOneExtarDate($scope.Shifts[i].invoices[j].created_at)) - new Date($scope.Shifts[i].invoices[j].created_at)) / 60000)
                             var totalprice = priceCalculation($scope.Shifts[i].invoices[j])
                             $scope.Shifts[i].ShiftGrandTotal = $scope.Shifts[i].ShiftGrandTotal + totalprice.grandtotal;
                         }
+                        if ($scope.Shifts[i].invoices.length>0)
+                        invoicecount = invoicecount+$scope.Shifts[i].invoices.length;
                         $scope.AllShiftGrandTotal = $scope.AllShiftGrandTotal + $scope.Shifts[i].ShiftGrandTotal
                         //for graph Data
                         GraphData.push([i, $scope.Shifts[i].ShiftGrandTotal, $scope.Shifts[i].starttime])
@@ -157,10 +171,10 @@
                             }
                         }
                     }
-                  
+                    $scope.AverageTaketime = Math.floor(AverageTime / invoicecount);
 
                     $scope.employeesPercent = (((($scope.AllShiftGrandTotal - ($scope.AllShiftGrandTotal * 13 / 100).toFixed(2))) * 10) / 100).toLocaleString('en')
-
+                    $scope.AveragePerson = $scope.AllShiftGrandTotal / peopleCount;
 
                     $scope.topProduct = _.sortBy($scope.prodArray, 'count');
                     $scope.topProduct.reverse()
@@ -168,7 +182,8 @@
 
                    
                     getRetailProduct();
-
+                    loadCategory();
+                    
                     setTimeout(function () {
                         //  $scope.isReport = true;
                         //  $scope.isReportLoading = false;
@@ -322,18 +337,77 @@
          }
         }
 
+
+
+        $scope.getWastages = function (invent) {
+
+            var mermaQuantity = 0;
+            if (invent && $scope.EndDate1) {
+                try {
+                    var Allope = _.filter(invent.Edits, function (num) { return new Date(moment.utc(num.created_at).format("MM/DD/YYYY HH:mm:ss A")) < new Date($scope.EndDate1) })
+                    // if(order.moment.utc(date).format("MM/DD/YYYY HH:mm:ss A")  > moment.utc(ingObj.Edits[i].created_at).format("MM/DD/YYYY HH:mm:ss A"))
+                    if (Allope.length > 0) {
+                        for (var A = 0; A < Allope.length; A++) {
+                            if (Allope[A].opertation == "subtraction")
+                                mermaQuantity = mermaQuantity + Allope[A].Cost;
+                        }
+                        return mermaQuantity
+                    } else {
+                        return 0;
+                    }
+                } catch (dsf) {
+
+                }
+            }
+        }
+
+
         $scope.getInventryQuantityFromEdits = function (invent) {
+
+            var enterd=0;
             //for (var i = 0; i < ingObj.Edits.length; i++) {
             if (invent && $scope.EndDate1) {
                 try {
                     var Allope = _.filter(invent.Edits, function (num) { return new Date(moment.utc(num.created_at).format("MM/DD/YYYY HH:mm:ss A")) < new Date($scope.EndDate1) })
                     // if(order.moment.utc(date).format("MM/DD/YYYY HH:mm:ss A")  > moment.utc(ingObj.Edits[i].created_at).format("MM/DD/YYYY HH:mm:ss A"))
-                    if (Allope.length)
-                        return Allope[0].Quantity  
-                    else
-                        return invent.Quantity
+                    if (Allope.length > 0) {
+                        for (var A = 0; A < Allope.length; A++) {
+                            if (Allope[A].opertation == "Addition")
+                                enterd = enterd + Allope[A].Cost;
+                            else if (Allope[A].opertation == "subtraction")
+                                enterd = enterd - Allope[A].Cost;
+                        }
+                        return enterd
+                    } else {
+                        return 0;
+                    }
                 } catch (dsf) {
-                    return invent.Quantity
+                   
+                }
+            }
+        }
+
+        $scope.getProductionQuantityFromEdits = function (production) {
+
+            var enterd = 0;
+            //for (var i = 0; i < ingObj.Edits.length; i++) {
+            if (production && $scope.EndDate1) {
+                try {
+                    var Allope = _.filter(production.Edits, function (num) { return new Date(moment.utc(num.created_at).format("MM/DD/YYYY HH:mm:ss A")) < new Date($scope.EndDate1) })
+                    // if(order.moment.utc(date).format("MM/DD/YYYY HH:mm:ss A")  > moment.utc(ingObj.Edits[i].created_at).format("MM/DD/YYYY HH:mm:ss A"))
+                    if (Allope.length > 0) {
+                        for (var A = 0; A < Allope.length; A++) {
+                            if (Allope[A].opertation == "Addition")
+                                enterd = enterd + Allope[A].Cost;
+                            //else if (Allope[A].opertation == "subtraction")
+                            //    enterd = enterd - Allope[A].Cost;
+                        }
+                        return enterd
+                    } else {
+                        return 0;
+                    }
+                } catch (dsf) {
+
                 }
             }
         }
@@ -375,15 +449,14 @@
                     }
                 }
                 }
-
+                if ($scope.Categories.length > 0);
+                $scope.getproductByCat($scope.Categories[0].clientId, 0)
             }
             });
         
     }
 
-        loadCategory();
-
-        
+       
 
 
         function getProductions() {
@@ -393,7 +466,62 @@
         }
         getProductions();
 
+        $scope.getIngridentSpent=function(ingrident) {
+            var quantity = 0
+          //  var ingspent = _.find($scope.prodArray, function (num) { return num.product.ingrident.clientId == ingrident.clientId });
+            if ($scope.prodArray.length > 0) {
+                for (var i = 0; i < $scope.prodArray.length; i++) {
+                    var ing = _.find($scope.prodArray[i].product.Ingradients, function (num) { return num.clientId == ingrident.clientId });
+                    if (ing)
+                        quantity = quantity+$scope.prodArray[i].count * parseFloat(ing.quantity);
 
+                    for (var j = 0; j < $scope.prodArray[i].product.Sides.length; j++) {
+                        var side = _.find($scope.Sides, function (num) { return num._id == $scope.prodArray[i].product.Sides[j] });
+                        if (side) {
+                            for (var k = 0; k < side.Ingradients.length; k++) {
+                                if (side.Ingradients[k].ingradientClientId == ingrident.clientId)
+                                    quantity = quantity + $scope.prodArray[i].count*parseFloat(side.Ingradients[k].quantity);
+                            }
+                        }
+                    }
+                }
+                return quantity;
+            }
+        }
+
+
+        $scope.shortForm = function (Form) {
+            if (Form == "Kilograms") {
+                return '.Kg';
+            }
+            else if (Form == "Litres") {
+                return '.Lt';
+            }
+            else if (Form == "Ounces") {
+                return '.Oz';
+            }
+            else if (Form == "Grams") {
+                return '.Gm';
+            }
+            else if (Form == "Milliliter") {
+                return '.ML';
+            }
+
+        }
+
+    
+
+
+        $scope.getProductionSpent = function (production) {
+            var productionQuantity = 0;
+            for (var i = 0; i < $scope.prodArray.length; i++) {
+                var produc = _.find($scope.prodArray[i].product.Production, function (num) { return num.ProductionClientId == production.clientId });
+                if (produc)
+                    productionQuantity = productionQuantity + $scope.prodArray[i].count * parseFloat(produc.quantity);
+               
+            }
+            return productionQuantity;
+        }
 
         function getSpent(id) {
 
@@ -405,7 +533,7 @@
         }
 
 
-        function getRetailProduct() {
+        function getRetailProduct () {
             reportsService.Getretailprod($rootScope.logedInUser.userid).then(function (response) {
                 $scope.Rproduct = response
 
@@ -440,12 +568,13 @@
                 var SidesObj = _.find(Sides, function (num) { return num._id == product.Sides[sidecounter] });
                 for (var ingcounter = 0; ingcounter < SidesObj.Ingradients.length; ingcounter++) {
                     var ing = _.find(Ingridiant, function (num) { return num.clientId == SidesObj.Ingradients[ingcounter].ingradientClientId });
-
-                    var proding = SidesObj.Ingradients[ingcounter];
-                    var p = ing.Cost
-                    var q = parseFloat(proding.quantity);
-                    var finalprice = p * q;
-                    pricetoreturn = pricetoreturn + finalprice;
+                    if (ing) {
+                        var proding = SidesObj.Ingradients[ingcounter];
+                        var p = ing.Cost
+                        var q = parseFloat(proding.quantity);
+                        var finalprice = p * q;
+                        pricetoreturn = pricetoreturn + finalprice;
+                    }
                 }
             }
         }
@@ -459,7 +588,7 @@
 
    $scope.getproductByCat = function (clientId,index) {
 
-       //$("#tab-1").tabs({ active: index });
+     //  $("#tab-1").tabs({ active: index });
 
        $scope.allCatIngtotal = 0;
        $scope.totalSaleByCat = 0;

@@ -23,7 +23,9 @@ module.exports = function (app) {
     var Invoice = common.mongoose.model('Invoice');
     var Ingredients = common.mongoose.model('Ingredients');
     var Sides = common.mongoose.model('Sides');
-    
+    var Product = common.mongoose.model('Product');
+    var Category = common.mongoose.model('Category');
+    var Production = common.mongoose.model('Production');
 
     app.get('/api/get/getshift', function (req, res) {
         // Shift.find({}, function (err, result) {
@@ -166,10 +168,63 @@ module.exports = function (app) {
     });
 
 
+// app.post('/api/get/Category', function (req, res) {
+//         Category.find({ restaurant: req.body.id }).populate('ParentCategory')
+//        .exec(function (err, result) {
+//            if (err) {
+//                console.log(err);
+//                res.json(0);
+//            }
+//            return res.json(result);
+//        })
+
+//     })
+
+
+    //call this api first and get the cateory and bind to the ui
+    //yes sirclear no w??
+    app.post('/api/get/getProductWithCat', function (req, res) {
+        //pass restarurant id here 
+        Product.find({ restaurant: req.body.id })
+        .populate('ParentCategory')
+       .exec(function (err, result) {
+           if (err) {
+               console.log(err);
+             return  res.json(0);
+           }else{
+           return res.json(result);
+           }
+       })
+
+    })
+
+
+    app.post('/api/get/getRetailProduct', function (req, res) {
+        //pass restarurant id here 
+        Product.find({ restaurant: req.body.id, type: 'Retail'})
+        .populate('ParentCategory')
+       .exec(function (err, result) {
+           if (err) {
+               console.log(err);
+               return res.json(0);
+           } else {
+               return res.json(result);
+           }
+       })
+
+    })
 
 
 
-
+    app.post('/api/get/getProduction', function (req, res) {
+        Production.find({ restaurant: req.headers.logedinuserid }, function (err, production) {
+            if (err) {
+                return res.json(null);
+            } else {
+                return res.json(production);
+            }
+        });
+    });
 
 
 } // employee module ENDS

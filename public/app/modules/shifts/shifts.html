@@ -257,11 +257,59 @@
                                         </div>
 
                                         <div class="media-body ns-item">
-                                            <small>{{'TOTALCOSTS' | translate}}</small>
+                                            <small>Costos Inventario</small>
                                             <h3>{{currentShift.totalCost.toLocaleString('en')}}</h3>
                                         </div>
                                     </div>
+									
+									
+                               <div class="list-group-item media">
+                                        <div class="pull-right hidden-sm">
+                                            <div class="sparkline-bar-1"></div>
+                                        </div>
 
+                                        <div class="media-body ns-item">
+                                            <small>Reported Costs</small>
+                                            <h3>{{R_expence.toLocaleString('en')}}</h3>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                     <div class="list-group-item media">
+                                        <div class="pull-right hidden-sm">
+                                            <div class="sparkline-bar-2"></div>
+                                        </div>
+
+                                        <div class="media-body ns-item">
+                                            <small>{{'TOTALEMPLOYEES' | translate}} 10%</small>
+                                            <h3>{{(currentShift.totalSales * 10/100).toLocaleString('en')}}</h3>
+                                        </div>
+                                    </div>
+                          
+                                      <div class="list-group-item media">
+                                        <div class="pull-right hidden-sm">
+                                            <div class="sparkline-bar-2"></div>
+                                        </div>
+
+                                        <div class="media-body ns-item">
+                                            <small>{{'TAX' | translate}}</small>
+                                            <h3>{{((currentShift.totalSales - (currentShift.totalSales * 10/100)) * 13/100).toLocaleString('en')}}</h3>
+                                        </div>
+                                    </div>
+                                    
+									<div class="list-group-item media">
+                                        <div class="pull-right hidden-sm">
+                                            <div class="sparkline-bar-2"></div>
+                                        </div>
+
+                                        <div class="media-body ns-item">
+                                            <small>{{'TOTALCOSTS' | translate}}</small>
+                                            <h3>{{ ((currentShift.totalSales * 10/100) + ((currentShift.totalSales - (currentShift.totalSales * 10/100)) * 13/100) + currentShift.totalCost + R_expence).toLocaleString('en')}}
+	                                            
+                                            </h3>
+                                        </div>
+                                    </div>
+                              
                                     <div class="list-group-item media">
                                         <div class="pull-right hidden-sm">
                                             <div class="sparkline-bar-2"></div>
@@ -272,29 +320,17 @@
                                             <h3>{{currentShift.totalSales.toLocaleString('en')}}</h3>
                                         </div>
                                     </div>
-
-                                   <!-- <div class="list-group-item media">
+                                    
+                                    <div class="list-group-item media">
                                         <div class="pull-right hidden-sm">
                                             <div class="sparkline-bar-3"></div>
                                         </div>
 
                                         <div class="media-body ns-item">
-                                            <small>Earnings</small>
-                                            <h3>{{currentShift.totalEarnings}}</h3>
+                                            <small>Resultado</small>
+                                            <h3>{{(currentShift.totalSales - (((currentShift.totalSales * 10/100) + ((currentShift.totalSales - (currentShift.totalSales * 10/100)) * 13/100) + currentShift.totalCost + R_expence))).toLocaleString('en')}}</h3>
                                         </div>
-                                    </div> -->
-                                    
-                                      <div class="list-group-item media">
-                                        <div class="pull-right hidden-sm">
-                                            <div class="sparkline-bar-2"></div>
-                                        </div>
-
-                                        <div class="media-body ns-item">
-                                            <small>{{'TAX' | translate}}</small>
-                                            <h3>{{(currentShift.totalSales * 13/100).toLocaleString('en')}}</h3>
-                                        </div>
-                                    </div>
-                                    
+                                    </div> 
                                 </div>
 
                                 <div class="p-5"></div>
@@ -418,6 +454,49 @@
 
 
                                 </div>
+
+                                <div class="p-5"></div>
+                            </div>
+                        </div>
+ 
+ 						<div class="card">
+                            <div class="card-header ch-alt p-b-0">
+                                <h4>Expenses Report </h4>
+                            </div>
+
+                            <div class="card-body">
+
+
+                                <ul class="list-group lg-alt">
+                                    <li class="list-group-item media">
+
+                                        <div class="media-body">
+                                            <span class="badge pull-right">{{currentShift.openingBalance.toLocaleString('en')}}</span>
+                                            <div class="lgi-heading">To buy for </div>
+                                            <small class="lgi-text">{{currentShift.openShiftBy}}</small>
+                                        </div>
+
+                                    </li>
+                                    <li class="list-group-item media" ng-repeat="edit in currentShift.edits">
+
+                                        <div class="media-body">
+                                            <span class="badge pull-right" ng-if="edit.opertaiontype=='Add'">+ {{edit.editamount.toLocaleString('en')}}</span>
+                                            <span class="badge pull-right" ng-if="edit.opertaiontype=='Remove'">- {{edit.editamount.toLocaleString('en')}}</span>
+                                            <div class="lgi-heading">{{edit.observation}}</div>
+                                            <small class="lgi-text">{{edit.editby}}</small>
+                                        </div>
+
+                                    </li>
+                                    <li class="list-group-item media">
+
+                                        <div class="media-body">
+                                            <span class="badge pull-right">{{currentShift.closingBalance.toLocaleString('en')}}</span>
+                                            <div class="lgi-heading">To pay for dj</div>
+                                            <small class="lgi-text">{{currentShift.closeShiftBy}}</small>
+                                        </div>
+
+                                    </li>
+                                </ul>
 
                                 <div class="p-5"></div>
                             </div>

@@ -152,7 +152,7 @@
 
                                         <div class="media-body ns-item">
                                             <small>{{'AVERAGEPERPERSON' | translate}}</small>
-                                            <h3>8679</h3>
+                                            <h3>{{AveragePerson.toFixed(2)}}</h3>
                                         </div>
                                     </div>
 
@@ -163,7 +163,7 @@
 
                                         <div class="media-body ns-item">
                                             <small>{{'AVERAGEINTABLES' | translate}}</small>
-                                            <h3>27:67m</h3>
+                                            <h3>{{AverageTaketime}}m</h3>
                                         </div>
                                     </div>
 
@@ -260,10 +260,10 @@
                             <tbody> <!--data-row-id="{{$index}}" ng-repeat="ing in Ingridiant"-->
 	                            <tr dir-paginate="ing in Ingridiant|filter:search|itemsPerPage:ingpageSize" current-page="ingcurrentPage" >
 		                            <td class="text-left" style="">{{ing.Name}}</td>
-		                            <td class="text-left" style="">{{getInventryQuantityFromEdits(ing)}} {{ing.UnitType}}</td>
-		                            <td class="text-left" style="">180kg</td>
+		                            <td class="text-left" style="">{{getInventryQuantityFromEdits(ing)}} {{shortForm(ing.UnitType)}}</td>
+		                            <td class="text-left" style="">{{getIngridentSpent(ing)}} {{shortForm(ing.UnitType)}}</td>
 		                            <td class="text-left" style="">{{ing.Cost}}</td>
-		                            <td class="text-left" style="">{{ing.Merma}}</td>
+		                            <td class="text-left" style="">{{getWastages(ing)}}</td>
 			                    </tr>
 			                     <!--<tr data-row-id="1">
 		                            <td class="text-left" style="">Ingredient Name</td>
@@ -377,9 +377,9 @@
 						                
 						                <a href="javascript:void(0);" class="column-header-anchor "><span class="text"> Costs</span><span class="zmdi icon"></span></a></th>
 						            
-						            <!--<th data-column-id="wastage" class="text-left" style="">
+						            <th data-column-id="wastage" class="text-left" style="">
 						                <a href="javascript:void(0);" class="column-header-anchor "><span class="text">Total Wastage</span><span class="zmdi icon"></span></a>
-						            </th>-->
+						            </th>
 						            
 						            
 						            </tr>
@@ -387,10 +387,10 @@
                             <tbody>
 	                            <tr data-row-id="{{$index}}" ng-repeat="produc in productions">
 		                            <td class="text-left" style="">{{produc.Name}}</td>
-		                            <td class="text-left" style="">{{produc.ProductionUnit}}</td>
-		                            <td class="text-left" style="">180kg</td>
+		                            <td class="text-left" style="">{{getProductionQuantityFromEdits(produc)}}{{shortForm(produc.ProductionUnit)}}</td>
+		                            <td class="text-left" style="">{{getProductionSpent(produc)}} {{shortForm(produc.ProductionUnit)}}</td>
 		                            <td class="text-left" style="">{{produc.Productionamount}}</td>
-		                            <!--<td class="text-left" style="">3kg(₡10)</td>-->
+		                            <td class="text-left" style="">{{getWastages(produc)}}</td>
 			                    </tr>
 							</tbody>
                         </table>
@@ -563,7 +563,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="lgi-heading">{{pcat.product.Name}}</div>
-                                                        <small class="lgi-text">Sales: {{pcat.count*pcat.product.Costs}}, times ordered: {{pcat.count}}</small>
+                                                        <small class="lgi-text">Sales: {{pcat.count*pcat.product.Costs || pcat.product.Price}}, times ordered: {{pcat.count}}</small>
                                                     </div>
                                                 </span>
                                                 <a href="" class="list-group-item view-more">

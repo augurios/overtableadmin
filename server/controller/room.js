@@ -137,15 +137,15 @@ module.exports = function (app) {
 
     app.post('/api/v1/addroom', function (req, res) {
         Room.find({ name: req.body.name }, function (err, rooms) {
-            if (rooms && rooms.length > 0) {
-                return res.json({ iserror: true, message: "Duplicate room name" });
-            } else {
+            //if (rooms && rooms.length > 0) {
+             //   return res.json({ iserror: true, message: "Duplicate room name" });
+         //   } else {
                 var room = new Room(req.body);
                 room.save(room, function (err, result) {
                     console.log(result);
                     return res.json({ iserror: false, message: result });
                 });
-            }
+            //}
         });
     })
 

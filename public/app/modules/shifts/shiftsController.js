@@ -170,10 +170,10 @@
             for (var ii = 0; ii < employeeScore.length; ii++) {
 
 
-                var percentageTax = employeeScore[ii].total - (13 / 100 * employeeScore[ii].total);
-                var percentage = (10 / 100 * percentageTax);
+               
+                var percentage = (  employeeScore[ii].total * 10 / 100 );
 
-                console.log('total', employeeScore[ii].total, 'percentageTax', percentageTax, percentage, );
+                
 
                 percentagePerEmployee.push({ "Employee": employeeScore[ii].employee, "Percentage": percentage })
             }
@@ -189,7 +189,10 @@
           $scope.openReport = function (showData) {
               
               $scope.currentShift = showData;
-               
+              if($scope.currentShift.Expences)
+                  $scope.R_expence=$scope.currentShift.Expences[0].editamount || 0;
+              else
+                  $scope.R_expence=0;
                console.log('shift stuff',$scope.currentShift.invoices);
               // get total in cash
               
@@ -266,6 +269,9 @@
               } catch (err) { };
 
               console.log("Shift Data: ", showData);
+
+
+             // console.log(( $scope.currentShift.totalSales - ($scope.currentShift.totalSales * 10/100) - (($scope.currentShift.totalSales - ($scope.currentShift.totalSales * 10/100))-($scope.currentShift.totalSales * 13/100) - ($scope.currentShift.totalCost)- $scope.R_expence)))
               $('#reportModal').modal('show');
 
           }
