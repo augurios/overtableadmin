@@ -169,9 +169,9 @@
 
             for (var ii = 0; ii < employeeScore.length; ii++) {
 
-
+				var tax = (  employeeScore[ii].total * 13 / 100 )
                
-                var percentage = (  employeeScore[ii].total * 10 / 100 );
+                var percentage = (  (employeeScore[ii].total - tax) * 10 / 100 );
 
                 
 

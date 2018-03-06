@@ -282,7 +282,7 @@
 
                                         <div class="media-body ns-item">
                                             <small>{{'TOTALEMPLOYEES' | translate}} 10%</small>
-                                            <h3>{{(currentShift.totalSales * 10/100).toLocaleString('en')}}</h3>
+                                            <h3>{{((currentShift.totalSales -(currentShift.totalSales  * 13/100)) * 10/100).toLocaleString('en')}}</h3>
                                         </div>
                                     </div>
                           
@@ -293,7 +293,7 @@
 
                                         <div class="media-body ns-item">
                                             <small>{{'TAX' | translate}}</small>
-                                            <h3>{{((currentShift.totalSales - (currentShift.totalSales * 10/100)) * 13/100).toLocaleString('en')}}</h3>
+                                            <h3>{{(currentShift.totalSales  * 13/100).toLocaleString('en')}}</h3>
                                         </div>
                                     </div>
                                     
@@ -328,7 +328,7 @@
 
                                         <div class="media-body ns-item">
                                             <small>Resultado</small>
-                                            <h3>{{(currentShift.totalSales - (((currentShift.totalSales * 10/100) + ((currentShift.totalSales - (currentShift.totalSales * 10/100)) * 13/100) + currentShift.totalCost + R_expence))).toLocaleString('en')}}</h3>
+                                            <h3>{{(currentShift.totalSales - (((currentShift.totalSales * 13/100) + ((currentShift.totalSales - (currentShift.totalSales * 13/100)) * 10/100) + currentShift.totalCost + R_expence))).toLocaleString('en')}}</h3>
                                         </div>
                                     </div> 
                                 </div>
