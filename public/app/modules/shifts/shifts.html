@@ -113,7 +113,11 @@
 
 </section>
 
-
+<style>
+    .RowColor  {
+        color:red;
+    }
+</style>
 
 
 <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -140,7 +144,7 @@
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{$index}}" aria-expanded="true" aria-controls="collapseOne{{$index}}">
-                                        {{'INVOICE' | translate}}: {{sh.clientName}} | {{'INVOICE' | translate}} #{{sh.invoiceNumber}} <span ng-show="sh.override.isPriceOverride"> | {{'CANCELED' | translate}} </span> <span ng-show="sh.discount"> | {{'DISCOUNT' | translate}}  </span> | total: {{sh.prices.grandtotal}} |<span ng-show="sh.iscash">{{'CASH' | translate}}</span>
+                                        <i ng-if="sh.ispanding"class="zmdi zmdi-info-outline"></i>   {{'INVOICE' | translate}}: {{sh.clientName}} | {{'INVOICE' | translate}} #{{sh.invoiceNumber}} <span ng-show="sh.override.isPriceOverride"> | {{'CANCELED' | translate}} </span> <span ng-show="sh.discount"> | {{'DISCOUNT' | translate}}  </span> | total: {{sh.prices.grandtotal}} |<span ng-show="sh.iscash">{{'CASH' | translate}}</span>
                                             <span ng-hide="sh.iscash">{{'CARD' | translate}}</span>
                                     </a>
                                 </h4>
@@ -201,7 +205,7 @@
 
                                     </div>
 
-                                    <div ng-repeat="order in sh.orders" class="row">
+                                    <div ng-repeat="order in sh.orders" class="row" ng-if="order && order.shiftId == currentShift.clientId">
 
                                         <div class="col-md-3">
                                             <strong>Product Name : - </strong>
@@ -258,7 +262,7 @@
 
                                         <div class="media-body ns-item">
                                             <small>Costos Inventario</small>
-                                            <h3>{{currentShift.totalCost.toLocaleString('en')}}</h3>
+                                            <h3>{{IngradientsTotals.toLocaleString('en')}}</h3>
                                         </div>
                                     </div>
 									
@@ -270,7 +274,7 @@
 
                                         <div class="media-body ns-item">
                                             <small>Reported Costs</small>
-                                            <h3>{{R_expence.toLocaleString('en')}}</h3>
+                                            <h3>{{currentShift.Expences.toLocaleString('en')}}</h3>
                                         </div>
                                     </div>
                                     
@@ -304,7 +308,7 @@
 
                                         <div class="media-body ns-item">
                                             <small>{{'TOTALCOSTS' | translate}}</small>
-                                            <h3>{{ ((currentShift.totalSales * 10/100) + ((currentShift.totalSales - (currentShift.totalSales * 10/100)) * 13/100) + currentShift.totalCost + R_expence).toLocaleString('en')}}
+                                            <h3>{{ ((currentShift.totalSales * 10/100) + ((currentShift.totalSales - (currentShift.totalSales * 10/100)) * 13/100) + currentShift.totalCost + currentShift.Expences).toLocaleString('en')}}
 	                                            
                                             </h3>
                                         </div>
@@ -328,7 +332,7 @@
 
                                         <div class="media-body ns-item">
                                             <small>Resultado</small>
-                                            <h3>{{(currentShift.totalSales - (((currentShift.totalSales * 13/100) + ((currentShift.totalSales - (currentShift.totalSales * 13/100)) * 10/100) + currentShift.totalCost + R_expence))).toLocaleString('en')}}</h3>
+                                            <h3>{{(currentShift.totalSales - (((currentShift.totalSales * 13/100) + ((currentShift.totalSales - (currentShift.totalSales * 13/100)) * 10/100) + currentShift.totalCost + currentShift.Expences))).toLocaleString('en')}}</h3>
                                         </div>
                                     </div> 
                                 </div>

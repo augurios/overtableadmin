@@ -23,6 +23,7 @@
 .room-field {
 	background-color: #FCF8E3;
 	height: 512px;
+	position: relative;
 }
 
 .room-field:after {
@@ -39,7 +40,7 @@
 
 .room-field p {
 	width: 132px;
-	position: relative;
+	position: absolute;
 	margin: 0;
 	overflow: hidden;
 	height: 90px;

@@ -77,17 +77,11 @@ module.exports = function (app) {
 
                                Shift.populate(data, options3, function (err, alldata) {
                                    return res.json(alldata);
-
                                });
                            });
                        });
-
-
-
                    });
-
                }
-
            });
     });
 
@@ -167,6 +161,41 @@ module.exports = function (app) {
            });
     });
 
+   
+
+    app.get('/api/get/getExpence', function (req, res) {
+        var ExpenceReport = common.mongoose.model('ExpenceReport');
+
+        ExpenceReport.find({ restaurant: req.headers.logedinuserid })
+       .exec(function (err, result) {
+           if (err) {
+               console.log(err);
+               return res.json(0);
+           } else {
+               return res.json(result);
+           }
+       })
+
+    })
+
+
+
+
+    app.get('/api/get/getIngSides', function (req, res) {
+
+        Ingredients.find({ restaurant: req.headers.logedinuserid }, function (err, ing) {
+            var ings = ing;
+            if (err)
+                ings = null;
+            Sides.find({ restaurant: req.headers.logedinuserid }, function (err, Sides1) {
+                if (err) {
+                    return res.json({ IngridentData: ings, Sidedata: null });
+                } else {
+                    return res.json({ IngridentData: ings, Sidedata: Sides1 });
+                }
+            });
+        })
+    });
 
 // app.post('/api/get/Category', function (req, res) {
 //         Category.find({ restaurant: req.body.id }).populate('ParentCategory')

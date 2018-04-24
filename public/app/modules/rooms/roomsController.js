@@ -85,6 +85,7 @@
                 userId: JSON.parse(localStorage.getItem('logedInUser')).userid,
                 number: $scope.getNewTableNumber('bar'),
                 type: 'bar',
+                style: 'top:0px;left:0;',
                 rotation: 'transform: rotate(0rad);'
             };
             $scope.tableNum.push(tableObj);
@@ -103,6 +104,7 @@
                 userId: JSON.parse(localStorage.getItem('logedInUser')).userid,
                 number: $scope.getNewTableNumber('table'),
                 type:'table',
+                style: 'top:0px;left:0;',
                 rotation: 'transform: rotate(0rad);'
                 
             };

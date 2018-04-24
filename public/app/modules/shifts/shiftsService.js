@@ -16,6 +16,8 @@
         service.shownewToken    = shownewToken;
         service.newToken    = newToken;
         service.GetShifting = GetShifting;
+        service.GetExpence = GetExpence
+        service.GetInventry = GetInventry
         return service;
         
         function init () {
@@ -24,6 +26,15 @@
             }, handleError('Error getting user data'));
         };
 
+        function GetInventry(restid) {
+            return $q((resolve, reject) => {
+                $http.get('/api/get/getIngSides', restid).then(function (res) {
+                    resolve(res.data);
+
+                }, handleError('Error getting user data'));
+            });
+
+        }
 
         function getInfo() {
             return $http.get('/api/v1/getdata').then(handleSuccess, handleError('Error getting user data'));
@@ -43,6 +54,14 @@
                 $http.get('/api/get/getshift', restid).then(function (res) {
                     resolve(res.data);
                     
+                }, handleError('Error getting user data'));
+            });
+        }
+        function GetExpence(ShiftId) {
+            return $q((resolve, reject) => {
+                $http.get('/api/get/getExpence', ShiftId).then(function (res) {
+                    resolve(res.data);
+
                 }, handleError('Error getting user data'));
             });
         }

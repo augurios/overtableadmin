@@ -35,6 +35,10 @@
                         $rootScope.teal = toState.data.teal;
                         $rootScope.lbg = typeof (toState.data.lbg) === "undefined" ? toState.data.lbg : "nil" ;
                         $rootScope.nopanel = toState.data.nopanel ? false : true;
+                        $('[data-ma-action="sidebar-open"]').removeClass('toggled');
+		                $('.sidebar').removeClass('toggled');
+		                $('.sidebar-backdrop').remove();
+		                $('body').removeClass('o-hidden');
                     })
                     // Sort Functionality
                     $rootScope.sort = function(keyname){
